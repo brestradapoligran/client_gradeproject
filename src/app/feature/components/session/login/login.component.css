@@ -1,0 +1,39 @@
+#login {
+    background:
+        /* top, transparent red, faked with gradient */
+        linear-gradient(rgba(15, 56, 90, 0.5),
+            rgba(15, 56, 90, 0.5)),
+        /* bottom, image */
+        url('../../../../../assets//img/login-background.jpg');
+    height: 90vh;
+    background-size: cover;
+}
+
+.container {
+    height: 100%;
+}
+
+.login-form {
+    background-color: #fff;
+    width: 50%;
+    margin-top: -7%;
+}
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-blue {
+    background-color: #0F385A;
+    color: #fff;
+}
+
+.title {
+    color: #0F385A;
+    font-size: 20px;
+    width: 100%;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
