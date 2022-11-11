@@ -7,3 +7,12 @@ ul {
     margin: 0;
     padding-left: 15px;
 }
+
+.full-width {
+    width: 100%;
+}
+
+.bg-blue {
+    background-color: #0F385A;
+    color: #fff;
+}
