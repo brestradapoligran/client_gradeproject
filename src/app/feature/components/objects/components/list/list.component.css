@@ -1,6 +1,11 @@
 .card {
     width: 18rem;
     height: 30rem;
+    cursor: pointer;
+}
+
+.card:hover {
+    border: 10px 10px 0 0 rgba(0, 0, 0, 0, 0.1)
 }
 
 li {
@@ -13,4 +18,8 @@ ul {
 
 .list-object {
     background-color: rgba(0, 0, 0, .1);
+}
+
+.search-input {
+    width: 100%;
 }
