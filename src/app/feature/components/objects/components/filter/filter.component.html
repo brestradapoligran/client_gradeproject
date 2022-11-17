@@ -1,6 +1,14 @@
 <div class="full-width container">
     <button class="btn bg-blue mb-3 full-width" [routerLink]="['create']">Crear Objeto</button>
 </div>
+<div class="full-width container mb-2">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar">
+        <button class="bg-blue search-btn ps-2 pe-2">
+            <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        </button>
+    </div>
+</div>
 <section id="filters" class="container">
     <div class="card full-width">
         <div class="card-body">

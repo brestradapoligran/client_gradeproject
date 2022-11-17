@@ -1,0 +1,11 @@
+#footer {
+    background-color: #0F385A;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+}
+
+.derechos {
+    color: #fff;
+}
