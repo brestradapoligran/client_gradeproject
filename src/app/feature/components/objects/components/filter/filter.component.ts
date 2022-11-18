@@ -1,5 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-filter',
@@ -8,8 +8,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 })
 export class FilterComponent implements OnInit {
 
-  faMagnifyingGlass = faMagnifyingGlass;
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
