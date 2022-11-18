@@ -1,26 +1,28 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
+  httpOptionss = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
+    })
+  };
+
   constructor(private http: HttpClient) { }
 
-  callApi(method: ApiMethods, endpoint: string) {
+  callApi(endpoint: string) {
+    let headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin', '*')
+    return this.http.get(endpoint, { headers });
+  }
 
-
-    switch (method) {
-      case ApiMethods.GET:
-        this.http.get(endpoint);
-        break;
-      case ApiMethods.POST:
-        break;
-      case ApiMethods.PUT:
-        break;
-      case ApiMethods.DELETE:
-        break;
-    }
+  getHeaders(): HttpHeaders {
+    return new HttpHeaders;
   }
 }
