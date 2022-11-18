@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderModule, FooterModule } from './feature/components';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
     AppRoutingModule,
     HeaderModule,
     FontAwesomeModule,
-    FooterModule
+    FooterModule,
+    HttpClientModule
   ],
   exports: [
     HeaderModule,

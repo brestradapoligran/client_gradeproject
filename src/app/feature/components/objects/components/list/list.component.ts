@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/feature/services/api/api.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  objects: any;
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.api.callApi('api/v1/objects')
+      .subscribe(data => this.objects = data);
   }
 
 }
