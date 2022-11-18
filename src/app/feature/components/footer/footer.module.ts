@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FooterRoutingModule } from './footer-routing.module';
 import { FooterComponent } from './footer.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,9 +12,11 @@ import { FooterComponent } from './footer.component';
   ],
   imports: [
     CommonModule,
-    FooterRoutingModule
+    FooterRoutingModule,
+    SharedModule
   ], exports: [
-    FooterComponent
+    FooterComponent,
+    SharedModule
   ]
 })
 export class FooterModule { }
