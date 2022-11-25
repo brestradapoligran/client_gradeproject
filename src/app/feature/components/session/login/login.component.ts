@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/feature/services/api/api.service';
+import { FormControl, FormGroup } from '@angular/forms'
 
 
 @Component({
@@ -8,8 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  form = new FormGroup({
+    email : new FormControl(''),
+    pass : new FormControl('')
+  });
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    
+  }
+
+  login(){
+    this.api.callApi('api/v1/login', ApiMethods.POST, this.form)
+    .subscribe(data => console.log(data));
+    
   }
 }

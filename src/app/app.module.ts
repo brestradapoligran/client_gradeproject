@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderModule, FooterModule } from './feature/components';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderModule,
     FontAwesomeModule,
     FooterModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderModule,
