@@ -11,3 +11,8 @@ body {
 body::-webkit-scrollbar {
     display: none;
 }
+
+.invalid-feedbback {
+    color: #f00;
+    font-size: 13px;
+}
