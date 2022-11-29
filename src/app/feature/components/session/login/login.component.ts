@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/feature/services/api/api.service';
 import { FormControl, FormGroup } from '@angular/forms'
+import { ApiMethods } from 'src/app/feature/utils/api-methods';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,19 +13,26 @@ import { FormControl, FormGroup } from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   form = new FormGroup({
-    email : new FormControl(''),
-    pass : new FormControl('')
+    email: new FormControl('bbrestrada@gmail.com'),
+    pass: new FormControl('Test4echo')
   });
+  logged: Boolean = true;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    
+
   }
 
-  login(){
-    this.api.callApi('api/v1/login', ApiMethods.POST, this.form)
-    .subscribe(data => console.log(data));
-    
+  login() {
+    this.api.callApi('api/v1/login', ApiMethods.POST, this.form.value)
+      .subscribe((data: any) => {
+        if (data)
+          sessionStorage.setItem('token', data.token);
+        this.router.navigate(['objects'])
+      }, () => {
+        this.logged = false;
+      });
   }
+
 }

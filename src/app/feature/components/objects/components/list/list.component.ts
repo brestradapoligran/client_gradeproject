@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/feature/services/api/api.service';
+import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
 @Component({
   selector: 'app-list',
