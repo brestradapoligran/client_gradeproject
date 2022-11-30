@@ -25,14 +25,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.api.callApi('api/v1/login', ApiMethods.POST, this.form.value)
+    this.api.callApi('api/v1/login', ApiMethods.POST, false, this.form.value)
       .subscribe((data: any) => {
         if (data)
           sessionStorage.setItem('token', data.token);
-        this.router.navigate(['objects'])
+        this.router.navigate(['users'])
       }, () => {
         this.logged = false;
-      });
+      }
+      );
   }
 
 }

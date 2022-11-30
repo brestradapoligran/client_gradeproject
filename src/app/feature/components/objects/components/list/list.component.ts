@@ -15,7 +15,7 @@ export class ListComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    this.api.callApi('api/v1/objects', ApiMethods.GET)
+    this.api.callApi('api/v1/objects', ApiMethods.GET, true)
       .subscribe(data => this.objects = data);
   }
 

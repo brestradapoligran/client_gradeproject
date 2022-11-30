@@ -1,0 +1,16 @@
+i {
+    padding: 6px;
+    border-radius: 10px;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+.fa-pencil:hover {
+    background-color: #0f0;
+}
+
+.fa-trash-can:hover {
+    background-color: #f00;
+}

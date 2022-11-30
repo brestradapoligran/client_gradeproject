@@ -17,20 +17,35 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  callApi(endpoint: string, method: ApiMethods, body?: any) {
-    let headers = new HttpHeaders();
-    headers.append('Access-Control-Allow-Origin', '*')
-    headers.append('Content-Type', 'application/json')
+  callApi(endpoint: string, method: ApiMethods, auth: Boolean, body?: any) {
+    let api_key = this.getToken();
+    let headers;
+    if (auth) {
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${api_key}`
+      });
+    } else {
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
+    }
+
+    const requestOptions = { headers: headers };
     switch (method) {
       case ApiMethods.GET:
-        return this.http.get(endpoint, { headers });
+        return this.http.get(endpoint, requestOptions);
       case ApiMethods.POST:
-        return this.http.post(endpoint, body, { headers })
+        return this.http.post(endpoint, body, requestOptions)
     }
-    return this.http.get(endpoint, { headers });
+    return this.http.get(endpoint, requestOptions);
   }
 
   getHeaders(): HttpHeaders {
     return new HttpHeaders;
+  }
+
+  getToken() {
+    return sessionStorage.getItem('token')
   }
 }
