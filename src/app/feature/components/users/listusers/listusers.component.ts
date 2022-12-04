@@ -23,4 +23,14 @@ export class ListusersComponent implements OnInit {
       .subscribe((data: any) => this.users = data);
   }
 
+  getUser(userId: String) {
+    console.log(userId)
+  }
+
+  changeStatus(user: UserModel) {
+    user.status = !user.status;
+    this.api.callApi(`api/v1/user/status/${user.id}`, ApiMethods.PUT, true)
+      .subscribe();
+  }
+
 }

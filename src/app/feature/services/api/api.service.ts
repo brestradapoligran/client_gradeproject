@@ -18,6 +18,19 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   callApi(endpoint: string, method: ApiMethods, auth: Boolean, body?: any) {
+    const requestOptions = { headers: this.getHeaders(auth) };
+    switch (method) {
+      case ApiMethods.GET:
+        return this.http.get(endpoint, requestOptions);
+      case ApiMethods.POST:
+        return this.http.post(endpoint, body, requestOptions);
+      case ApiMethods.PUT:
+        return this.http.put(endpoint, body, requestOptions);
+    }
+    return this.http.get(endpoint, requestOptions);
+  }
+
+  getHeaders(auth: Boolean): HttpHeaders {
     let api_key = this.getToken();
     let headers;
     if (auth) {
@@ -30,19 +43,7 @@ export class ApiService {
         'Content-Type': 'application/json'
       });
     }
-
-    const requestOptions = { headers: headers };
-    switch (method) {
-      case ApiMethods.GET:
-        return this.http.get(endpoint, requestOptions);
-      case ApiMethods.POST:
-        return this.http.post(endpoint, body, requestOptions)
-    }
-    return this.http.get(endpoint, requestOptions);
-  }
-
-  getHeaders(): HttpHeaders {
-    return new HttpHeaders;
+    return headers;
   }
 
   getToken() {

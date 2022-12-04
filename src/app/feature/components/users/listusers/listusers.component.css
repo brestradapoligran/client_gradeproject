@@ -14,3 +14,41 @@ i:hover {
 .fa-trash-can:hover {
     background-color: #f00;
 }
+
+.full-width {
+    width: 100%;
+}
+
+tr:hover {
+    background-color: #E8E8E8;
+    cursor: pointer;
+}
+
+.bg-blue:hover {
+    background-color: #0F385A;
+    color: #fff;
+}
+
+.bg-blue {
+    background-color: #0F385A;
+    color: #fff;
+}
+
+.radius {
+    -moz-border-radius: 24px;
+    -webkit-border-radius: 24px;
+    border-radius: 24px;
+}
+
+.status {
+    border-radius: 5px;
+}
+
+.status-active {
+    background-color: #C6FFC1;
+}
+
+
+.status-inactive {
+    background-color: #FFC1C1;
+}

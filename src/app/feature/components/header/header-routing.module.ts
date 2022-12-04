@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'session',
     loadChildren: () => import('../session/session.module').then(m => m.SessionModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
   }
 ];
 
