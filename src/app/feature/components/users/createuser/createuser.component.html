@@ -1,0 +1,77 @@
+<section id="create-user">
+    <div class="container">
+        <div>
+            <label class="title text-center mt-3">{{title}}</label>
+        </div>
+        <div class="form container card p-4 mb-5 mt-3">
+            <div>
+                <label class="form-title text-center mb-3">Información del usuario</label>
+            </div>
+            <form name="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" name="name" required class="form-control" formControlName="name" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-group">
+                            <label>Apellido</label>
+                            <input type="text" name="lastname" required class="form-control"
+                                formControlName="lastName" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-group">
+                            <label>Correo</label>
+                            <input type="email" name="email" required class="form-control" formControlName="email" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-group">
+                            <label>Rol</label>
+                            <select class="form-select" formControlName="role">
+                                <option selected disabled>Selecciona un rol</option>
+                                <option value="ROLE_ADMIN">Administrador</option>
+                                <option value="ROLE_SUPERVISOR">Supervisor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-2" *ngIf="id==undefined">
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" name="pass" required class="form-control" formControlName="pass" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-2" *ngIf="id==undefined">
+                        <div class="form-group">
+                            <label>Confirmar Contraseña</label>
+                            <input type="password" name="confirmpass" required class="form-control"
+                                formControlName="confirmPass" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" ng-disabled="form.$invalid" class="btn bg-blue pull-right"
+                                        [routerLink]="['/users/']">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                        Volver atrás
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" ng-disabled="form.$invalid" class="btn bg-blue pull-right">
+                                        {{title}}
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

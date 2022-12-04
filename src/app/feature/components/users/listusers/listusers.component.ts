@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import UserModel from 'src/app/feature/models/user.model';
+import { ApiService } from 'src/app/feature/services/api/api.service';
+import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
 @Component({
   selector: 'app-listusers',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListusersComponent implements OnInit {
 
-  constructor() { }
+  users: UserModel[] = [];
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.api.callApi('api/v1/users', ApiMethods.GET, true)
+      .subscribe((data: any) => this.users = data);
+  }
+
+  getUser(userId: String) {
+    console.log(userId)
+  }
+
+  changeStatus(user: UserModel) {
+    user.status = !user.status;
+    this.api.callApi(`api/v1/user/status/${user.id}`, ApiMethods.PUT, true)
+      .subscribe();
   }
 
 }
