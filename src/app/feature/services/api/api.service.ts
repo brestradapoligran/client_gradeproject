@@ -17,8 +17,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  callApi(endpoint: string, method: ApiMethods, auth: Boolean, body?: any) {
-    const requestOptions = { headers: this.getHeaders(auth) };
+  callApi(endpoint: string, method: ApiMethods, auth: Boolean, body?: any, newHeaders?: any) {
+    const requestOptions = { headers: this.getHeaders(auth, newHeaders) };
     switch (method) {
       case ApiMethods.GET:
         return this.http.get(endpoint, requestOptions);
@@ -26,22 +26,23 @@ export class ApiService {
         return this.http.post(endpoint, body, requestOptions);
       case ApiMethods.PUT:
         return this.http.put(endpoint, body, requestOptions);
+      case ApiMethods.DELETE:
+        return this.http.delete(endpoint, requestOptions);
     }
-    return this.http.get(endpoint, requestOptions);
   }
 
-  getHeaders(auth: Boolean): HttpHeaders {
-    let api_key = this.getToken();
-    let headers;
+  getHeaders(auth: Boolean, q?: string): HttpHeaders {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
     if (auth) {
-      headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${api_key}`
-      });
-    } else {
-      headers = new HttpHeaders({
-        'Content-Type': 'application/json'
-      });
+      let api_key = this.getToken();
+      headers = headers.append('Authorization', `Bearer ${api_key}`);
+    }
+
+    if (q) {
+      headers = headers.append('q', q);
     }
     return headers;
   }

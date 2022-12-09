@@ -1,6 +1,6 @@
 .card {
     width: 18rem;
-    height: 30rem;
+    height: 100%;
     cursor: pointer;
 }
 
@@ -22,4 +22,14 @@ ul {
 
 .search-input {
     width: 100%;
+}
+
+.btn-size {
+    width: 70%;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -13,6 +13,9 @@ const routes: Routes = [
   },
   {
     path: 'object', component: GetObjectComponent
+  },
+  {
+    path: 'edit/:id', component: CreateObjectComponent
   }
 ];
 
