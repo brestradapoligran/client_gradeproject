@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       .subscribe((data: any) => {
         if (data)
           sessionStorage.setItem('token', data.token);
-        this.router.navigate(['users'])
+        this.router.navigate(['objects'])
       }, () => {
         this.logged = false;
       }

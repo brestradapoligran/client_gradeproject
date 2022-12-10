@@ -1,20 +1,27 @@
 <section id="create-object" class="container">
+    <div>
+        <label class="title text-center mt-3">{{title}}</label>
+    </div>
     <div class="center-div">
         <div class="card p-4 mt-5 form-container">
-            <form name=" myForm">
+            <div>
+                <label class="form-title text-center mb-3">Información del objeto</label>
+            </div>
+            <form name=" myForm" [formGroup]="object" (ngSubmit)="onSubmit()">
                 <div class="login-container">
                     <div class="row">
                         <div class="col-md-6 mb-2">
                             <div class="form-group">
                                 <label>Nombre</label>
-                                <input type="email" name="email" ng-model="user.username" required class="form-control">
+                                <input type="text" name="email" ng-model="user.username" required class="form-control"
+                                    formControlName="name">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label>Descripción</label>
-                                <input type="password" name="pass" ng-model="user.password" required
-                                    class="form-control">
+                                <input type="text" name="pass" required class="form-control"
+                                    formControlName="description">
                             </div>
                         </div>
                         <hr class="hr hr-blurry" />
@@ -31,10 +38,29 @@
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label>Descripción</label>
-                                <input type="password" name="pass" ng-model="user.password" required
-                                    class="form-control">
+                                <input type="text" name="pass" ng-model="user.password" required class="form-control">
                             </div>
                         </div>
+
+                        <hr class="hr hr-blurry" />
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label>Característica</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">Color</option>
+                                    <option value="2">Forma</option>¿
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input type="text" name="pass" ng-model="user.password" required class="form-control">
+                            </div>
+                        </div>
+
+
                         <div class="col-md-12">
                             <div class="form-group  text-center">
                                 <button ng-click="authenticate()" ng-disabled="myForm.$invalid"

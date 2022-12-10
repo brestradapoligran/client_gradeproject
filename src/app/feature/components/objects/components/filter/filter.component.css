@@ -34,3 +34,7 @@ input {
 input[type=text]:focus {
     box-shadow: none;
 }
+
+.form {
+    width: 80%;
+}

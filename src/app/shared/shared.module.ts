@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from './components'
 
 @NgModule({
   declarations: [],
@@ -11,11 +11,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FontAwesomeModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
 
   ], exports: [
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    ModalModule
   ]
 })
 export class SharedModule { }

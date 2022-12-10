@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filter',
@@ -8,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
 
+  @Output() searchWord = new EventEmitter<String>();
+  word: String = '';
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+  }
+
+  sendSearch() {
+    this.searchWord.emit(this.word)
   }
 
 }
