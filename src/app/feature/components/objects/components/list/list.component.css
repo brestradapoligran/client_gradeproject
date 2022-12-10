@@ -16,10 +16,6 @@ ul {
     list-style: none;
 }
 
-.list-object {
-    background-color: rgba(0, 0, 0, .1);
-}
-
 .search-input {
     width: 100%;
 }

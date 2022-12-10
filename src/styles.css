@@ -6,13 +6,26 @@
 
 body {
     scrollbar-width: none;
+    background-color: rgba(0, 0, 0, .1) !important;
+    height: 100vh;
 }
 
 body::-webkit-scrollbar {
     display: none;
+    background-color: rgba(0, 0, 0, .1) !important;
+    height: 100vh;
 }
 
 .invalid-feedbback {
     color: #f00;
     font-size: 13px;
+}
+
+.title {
+    color: #0F385A;
+    font-size: 20px;
+    width: 100%;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 10px 0 20px 0;
 }
