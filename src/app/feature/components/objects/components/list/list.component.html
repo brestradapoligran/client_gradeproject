@@ -1,30 +1,47 @@
 <section class="list-object">
-    <div class="container pt-4">
-        <div class="row">
-            <div class="col-3 col-md-3 col-sm-12">
-                <app-filter (searchWord)="getWord($event)"></app-filter>
-            </div>
-            <div class="col-lg-9 col-sm-12">
-                <ul class="row">
-                    <li class="col-4 mb-4" *ngFor="let object of objects">
-                        <div class="card">
-                            <img src="../../../../../../assets/img/descarga.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">{{object.name}}</h5>
-                                <p class="card-text">{{object.description}}</p>
-                            </div>
-                            <div class="buttons row mb-2">
-                                <div class="col-6 p-2 center"><button class="btn btn-primary btn-size"
-                                        [routerLink]="['edit', object.id]">Editar</button>
-                                </div>
-                                <div class="col-6 p-2 center"><button class="btn btn-danger btn-size"
-                                        (click)="onDelete(object.id)">Eliminar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <div class="container pt-4">
+    <div>
+      <label class="title text-center">OBJETOS</label>
     </div>
+    <div class="row">
+      <div class="col-3 col-md-3 col-sm-12">
+        <app-filter (searchWord)="getWord($event)"></app-filter>
+      </div>
+      <div class="col-lg-9 col-sm-12">
+        <ul class="row">
+          <li class="col-4 mb-4" *ngFor="let object of objects">
+            <div class="card">
+              <img
+                src="../../../../../../assets/img/descarga.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title text-center">{{ object.name }}</h5>
+                <p class="card-text">{{ object.description }}</p>
+              </div>
+              <div class="buttons row mb-2">
+                <div class="col-6 p-2 center">
+                  <button
+                    class="btn btn-primary btn-size"
+                    [routerLink]="['edit', object.id]"
+                  >
+                    Editar
+                  </button>
+                </div>
+                <div class="col-6 p-2 center">
+                  <button
+                    class="btn btn-danger btn-size"
+                    (click)="onDelete(object.id)"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
