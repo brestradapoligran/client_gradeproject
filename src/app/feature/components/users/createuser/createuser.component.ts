@@ -38,12 +38,12 @@ export class CreateuserComponent implements OnInit {
   }
 
   createUser() {
-    this.api.callApi('api/v1/user', ApiMethods.POST, true, this.form.value)
+    this.api.callApi('api/v1/user', ApiMethods.POST, true, new Map(), this.form.value)
       .subscribe(() => this.router.navigate(['users/']));
   }
 
   updateUser() {
-    this.api.callApi(`api/v1/user/${this.form.value.id}`, ApiMethods.PUT, true, this.form.value)
+    this.api.callApi(`api/v1/user/${this.form.value.id}`, ApiMethods.PUT, true, new Map(), this.form.value)
       .subscribe(() => this.router.navigate(['users/']));
   }
 
@@ -55,7 +55,7 @@ export class CreateuserComponent implements OnInit {
   }
 
   loadUserData() {
-    this.api.callApi(`api/v1/user/${this.id}`, ApiMethods.GET, true)
+    this.api.callApi(`api/v1/user/${this.id}`, ApiMethods.GET, true, new Map())
       .subscribe((data: any) => {
         this.form.setValue({
           id: data.id,

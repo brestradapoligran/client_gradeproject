@@ -1,16 +1,17 @@
-.landing-background{
+.landing-background {
     height: 86vh;
     background-image: url('/assets/img/poligran-campus.png');
     background-size: cover;
 }
 
-.landing-message{
+.landing-message {
     margin: auto;
     margin-top: 25vh;
     width: 75%;
     padding: 10px;
 }
-.landing-text{
+
+.landing-text {
     font-size: 3em;
     color: white;
     text-align: center;

@@ -19,7 +19,7 @@ export class ListusersComponent implements OnInit {
   }
 
   getUsers() {
-    this.api.callApi('api/v1/users', ApiMethods.GET, true)
+    this.api.callApi('api/v1/users', ApiMethods.GET, true, new Map())
       .subscribe((data: any) => this.users = data);
   }
 
@@ -29,7 +29,7 @@ export class ListusersComponent implements OnInit {
 
   changeStatus(user: UserModel) {
     user.status = !user.status;
-    this.api.callApi(`api/v1/user/status/${user.id}`, ApiMethods.PUT, true)
+    this.api.callApi(`api/v1/user/status/${user.id}`, ApiMethods.PUT, true, new Map())
       .subscribe();
   }
 

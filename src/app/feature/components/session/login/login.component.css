@@ -29,3 +29,8 @@
     background-color: #0F385A;
     color: #fff;
 }
+
+a {
+    text-decoration: none;
+    font-size: 13px;
+}
