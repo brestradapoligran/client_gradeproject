@@ -38,3 +38,6 @@ input[type=text]:focus {
 .form {
     width: 80%;
 }
+.responsive-text{
+    font-size: 1vw;
+}

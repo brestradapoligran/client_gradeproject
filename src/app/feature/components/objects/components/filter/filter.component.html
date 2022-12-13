@@ -1,28 +1,43 @@
 <div class="full-width container">
-    <button class="btn bg-blue mb-3 full-width" [routerLink]="['create']">Crear Objeto</button>
+  <button
+    class="btn bg-blue mb-3 full-width responsive-text"
+    [routerLink]="['create']"
+  >
+    Crear Objeto
+  </button>
 </div>
 <div class="full-width container mb-2">
-    <div class="input-group mb-3">
-        <form>
-            <input type="text" class="form-control" placeholder="Buscar" name="word" [(ngModel)]="word">
-        </form>
-        <button class="bg-blue search-btn" (click)="sendSearch()">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-    </div>
+  <div class="input-group mb-3">
+    <form>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar"
+        name="word"
+        [(ngModel)]="word"
+      />
+    </form>
+    <button class="bg-blue search-btn" (click)="sendSearch()">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
 </div>
 <section id="filters" class="container">
-    <div class="card full-width">
-        <div class="card-body">
-            <h5 class="card-title text-center">Filtros</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Color</h6>
-            <ul>
-                <li class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label">Rojo</label>
-                </li>
-            </ul>
-            <h6 class="card-subtitle mb-2 text-muted mt-3">Tipo</h6>
-        </div>
+  <div class="card full-width">
+    <div class="card-body">
+      <h5 class="card-title text-center responsive-text">Filtros</h5>
+      <h6 class="card-subtitle mb-2 text-muted responsive-text">Color</h6>
+      <ul>
+        <li class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckDefault"
+          />
+          <label class="form-check-label responsive-text">Rojo</label>
+        </li>
+      </ul>
+      <h6 class="card-subtitle mb-2 text-muted mt-3 responsive-text">Tipo</h6>
     </div>
+  </div>
 </section>

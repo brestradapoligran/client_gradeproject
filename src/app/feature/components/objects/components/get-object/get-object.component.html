@@ -1,49 +1,76 @@
 <section id="get-object">
-    <div class="container p-5">
-        <div class="row">
-            <div class="col-3">
-                <img src="../../../../../../assets/img/descarga.jpg" class="card-img-top" alt="...">
+  <div class="container p-5">
+    <div class="row">
+      <div class="col-3">
+        <img
+          src="../../../../../../assets/img/descarga.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+      </div>
+      <div class="col-9 card">
+        <form name=" myForm">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="responsive-text">Nombre</label>
+                  <input
+                    type="hola"
+                    name="email"
+                    ng-model="user.username"
+                    required
+                    class="form-control"
+                    value="Mochila"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="responsive-text">Descripción</label>
+                  <input
+                    type="hola"
+                    name="email"
+                    ng-model="user.username"
+                    required
+                    class="form-control"
+                    value="Mochila"
+                    disabled
+                  />
+                </div>
+              </div>
+              <hr class="hr hr-blurry" />
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label class="responsive-text">Característica</label>
+                  <select
+                    class="form-select responsive-text"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">Color</option>
+                    <option value="2">Forma</option>
+                    ¿
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label class="responsive-text">Descripción</label>
+                  <input
+                    type="password"
+                    name="pass"
+                    ng-model="user.password"
+                    required
+                    class="form-control"
+                  />
+                </div>
+              </div>
             </div>
-            <div class="col-9 card">
-                <form name=" myForm">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6 mb-2">
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input type="hola" name="email" ng-model="user.username" required
-                                        class="form-control" value="Mochila" disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="form-group">
-                                    <label>Descripción</label>
-                                    <input type="hola" name="email" ng-model="user.username" required
-                                        class="form-control" value="Mochila" disabled>
-                                </div>
-                            </div>
-                            <hr class="hr hr-blurry" />
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label>Característica</label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">Color</option>
-                                        <option value="2">Forma</option>¿
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label>Descripción</label>
-                                    <input type="password" name="pass" ng-model="user.password" required
-                                        class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </section>

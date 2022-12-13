@@ -2,31 +2,47 @@
   <div class="container center-div">
     <div class="login-form p-5">
       <div>
-        <label class="title text-center">INICIAR SESIÓN</label>
+        <label class="title text-center responsive-text">INICIAR SESIÓN</label>
       </div>
       <form name="form" [formGroup]="form" (ngSubmit)="login()">
         <div class="login-container">
           <div class="row">
             <div class="col-md-12 mb-2">
               <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" required class="form-control" formControlName="email" />
+                <label class="responsive-text">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="form-control responsive-text"
+                  formControlName="email"
+                />
               </div>
             </div>
             <div class="col-md-12 mb-3">
               <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="pass" required class="form-control" formControlName="pass" />
+                <label class="responsive-text">Password</label>
+                <input
+                  type="password"
+                  name="pass"
+                  required
+                  class="form-control"
+                  formControlName="pass"
+                />
               </div>
             </div>
             <div class="col-md-12 mb-3" *ngIf="!logged">
-              <div class="invalid-feedbback">
+              <div class="invalid-feedbback responsive-text">
                 Usuario y/o contraseña inválidos
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group text-center">
-                <button type="submit" ng-disabled="myForm.$invalid" class="btn bg-blue pull-right">
+                <button
+                  type="submit"
+                  ng-disabled="myForm.$invalid"
+                  class="btn bg-blue pull-right responsive-text"
+                >
                   Ingresar
                   <i class="fa-solid fa-arrow-right"></i>
                 </button>
