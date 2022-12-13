@@ -1,11 +1,13 @@
 <section id="listusers" class="m-3">
   <div class="container">
     <div class="align-items-end full-width mb-3">
-      <button class="btn bg-blue" [routerLink]="['create']">Crear Nuevo</button>
+      <button class="btn bg-blue responsive-text" [routerLink]="['create']">
+        Crear Nuevo
+      </button>
     </div>
     <table class="table radius">
       <thead class="bg-blue">
-        <tr class="bg-blue">
+        <tr class="bg-blue responsive-text">
           <th scope="col">Nombre</th>
           <th scope="col">Apellido</th>
           <th scope="col">Email</th>
@@ -16,13 +18,16 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users" (click)="getUser(user.id)">
-          <td>{{user.name}}</td>
-          <td>{{user.lastName}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
-          <td class="text-center"><span class="ps-2 pe-2 pt-1 pb-1 status text-center"
-              [ngClass]="user.status ? 'status-active' : 'status-inactive'">{{user.status ? 'Activo':
-              'Inactivo'}}</span>
+          <td>{{ user.name }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td class="text-center">
+            <span
+              class="ps-2 pe-2 pt-1 pb-1 status text-center"
+              [ngClass]="user.status ? 'status-active' : 'status-inactive'"
+              >{{ user.status ? "Activo" : "Inactivo" }}</span
+            >
           </td>
           <td>
             <i class="fa-solid fa-pencil" [routerLink]="['edit', user.id]"></i>

@@ -29,3 +29,6 @@ ul {
     align-items: center;
     justify-content: center;
 }
+.responsive-text{
+    font-size: 1vw;
+}

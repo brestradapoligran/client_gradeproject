@@ -52,3 +52,6 @@ tr:hover {
 .status-inactive {
     background-color: #FFC1C1;
 }
+.responsive-text{
+    font-size: 1vw;
+}
