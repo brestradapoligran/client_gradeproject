@@ -13,11 +13,14 @@
                 <input type="email" name="email" required class="form-control" formControlName="email" />
               </div>
             </div>
-            <div class="col-md-12 mb-3">
+            <div class="col-md-12 mb-1">
               <div class="form-group">
                 <label>Password</label>
                 <input type="password" name="pass" required class="form-control" formControlName="pass" />
               </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <a [routerLink]="['/session/forgotpassword']">¿Has olvidado contraseña?</a>
             </div>
             <div class="col-md-12 mb-3" *ngIf="!logged">
               <div class="invalid-feedbback">

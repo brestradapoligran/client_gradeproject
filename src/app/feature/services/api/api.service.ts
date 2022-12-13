@@ -17,8 +17,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  callApi(endpoint: string, method: ApiMethods, auth: Boolean, body?: any, newHeaders?: any) {
+  callApi(endpoint: string, method: ApiMethods, auth: Boolean, newHeaders: Map<string, string>, body?: any,) {
     const requestOptions = { headers: this.getHeaders(auth, newHeaders) };
+    console.log(requestOptions)
+    console.log(newHeaders)
     switch (method) {
       case ApiMethods.GET:
         return this.http.get(endpoint, requestOptions);
@@ -31,7 +33,7 @@ export class ApiService {
     }
   }
 
-  getHeaders(auth: Boolean, q?: string): HttpHeaders {
+  getHeaders(auth: Boolean, newHeaders: Map<string, string>): HttpHeaders {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -41,9 +43,8 @@ export class ApiService {
       headers = headers.append('Authorization', `Bearer ${api_key}`);
     }
 
-    if (q) {
-      headers = headers.append('q', q);
-    }
+    newHeaders.forEach((value: string, key: string) => headers = headers.append(key, value));
+
     return headers;
   }
 
