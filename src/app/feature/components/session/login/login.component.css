@@ -29,6 +29,12 @@
     background-color: #0F385A;
     color: #fff;
 }
+
 .responsive-text{
     font-size: 1vw;
+}
+
+a {
+    text-decoration: none;
+    font-size: 13px;
 }

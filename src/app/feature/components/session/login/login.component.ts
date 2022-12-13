@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form = new FormGroup({
-    email: new FormControl('prueba1@gmail.com'),
-    pass: new FormControl('asdqwe')
+    email: new FormControl(''),
+    pass: new FormControl('')
   });
   logged: Boolean = true;
 
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.api.callApi('api/v1/login', ApiMethods.POST, false, this.form.value)
+    this.api.callApi('api/v1/login', ApiMethods.POST, false, new Map(), this.form.value)
       .subscribe((data: any) => {
         if (data)
           sessionStorage.setItem('token', data.token);

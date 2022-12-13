@@ -21,7 +21,7 @@ export class ListComponent implements OnInit {
   }
 
   async getObjects() {
-    await this.api.callApi('api/v1/objects', ApiMethods.GET, true)
+    await this.api.callApi('api/v1/objects', ApiMethods.GET, true, new Map())
       .subscribe((data: any) => this.objects = data);
   }
 
@@ -29,12 +29,12 @@ export class ListComponent implements OnInit {
     if (word == undefined) {
       word = '';
     }
-    this.api.callApi('api/v1/object/search', ApiMethods.GET, true, undefined, word)
+    this.api.callApi('api/v1/object/search', ApiMethods.GET, true, new Map(), undefined)
       .subscribe((data: any) => this.objects = data);
   }
 
   async onDelete(id: string) {
-    await this.api.callApi(`api/v1/object/${id}`, ApiMethods.DELETE, true)
+    await this.api.callApi(`api/v1/object/${id}`, ApiMethods.DELETE, true, new Map())
       .subscribe(() => this.getObjects());
   }
 

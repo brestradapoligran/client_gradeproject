@@ -29,7 +29,7 @@ export class CreateObjectComponent implements OnInit {
   }
 
   createObject() {
-    this.api.callApi('api/v1/object', ApiMethods.POST, true, this.object.value)
+    this.api.callApi('api/v1/object', ApiMethods.POST, true, new Map(), this.object.value)
       .subscribe(() => this.router.navigate(['objects/']));
   }
 
@@ -45,7 +45,7 @@ export class CreateObjectComponent implements OnInit {
   }
 
   loadObjectData() {
-    this.api.callApi(`api/v1/object/${this.id}`, ApiMethods.GET, true)
+    this.api.callApi(`api/v1/object/${this.id}`, ApiMethods.GET, true, new Map())
       .subscribe((data: any) => {
         this.object.setValue({
           id: data.id,
