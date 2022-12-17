@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import ObjectModel from 'src/app/feature/models/object.model';
+import ObjectTypeModel from 'src/app/feature/models/objet-type.model';
+import FiltersObjectModel from 'src/app/feature/models/request/filters-object.model';
 import { ApiService } from 'src/app/feature/services/api/api.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
@@ -12,7 +14,8 @@ import { ApiMethods } from 'src/app/feature/utils/api-methods';
 export class ListComponent implements OnInit {
 
   objects: ObjectModel[] = [];
-  word: String = '';
+  searchWord: String = '';
+  objectTypes: any[] = [];
 
   constructor(private api: ApiService) { }
 
@@ -25,11 +28,9 @@ export class ListComponent implements OnInit {
       .subscribe((data: any) => this.objects = data);
   }
 
-  getWord(word: any) {
-    if (word == undefined) {
-      word = '';
-    }
-    this.api.callApi('api/v1/object/search', ApiMethods.GET, true, new Map(), undefined)
+  searchFilters(filters: any) {
+    console.log(filters)
+    this.api.callApi('api/v1/object/search', ApiMethods.POST, true, new Map(), filters)
       .subscribe((data: any) => this.objects = data);
   }
 
