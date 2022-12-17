@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
   objects: ObjectModel[] = [];
   searchWord: String = '';
   objectTypes: any[] = [];
+  filters: FiltersObjectModel = new FiltersObjectModel();
 
   constructor(private api: ApiService) { }
 
@@ -29,14 +30,14 @@ export class ListComponent implements OnInit {
   }
 
   searchFilters(filters: any) {
-    console.log(filters)
+    this.filters = filters;
     this.api.callApi('api/v1/object/search', ApiMethods.POST, true, new Map(), filters)
       .subscribe((data: any) => this.objects = data);
   }
 
   async onDelete(id: string) {
     await this.api.callApi(`api/v1/object/${id}`, ApiMethods.DELETE, true, new Map())
-      .subscribe(() => this.getObjects());
+      .subscribe(() => this.searchFilters(this.filters));
   }
 
 }
