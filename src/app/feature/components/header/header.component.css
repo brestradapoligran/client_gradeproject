@@ -4,6 +4,7 @@ header{
     height: 70px;
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 .bg-blue {
     background-color: #0F385A;
