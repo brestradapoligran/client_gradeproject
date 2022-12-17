@@ -19,8 +19,6 @@ export class ApiService {
 
   callApi(endpoint: string, method: ApiMethods, auth: Boolean, newHeaders: Map<string, string>, body?: any,) {
     const requestOptions = { headers: this.getHeaders(auth, newHeaders) };
-    console.log(requestOptions)
-    console.log(newHeaders)
     switch (method) {
       case ApiMethods.GET:
         return this.http.get(endpoint, requestOptions);
@@ -44,7 +42,6 @@ export class ApiService {
     }
 
     newHeaders.forEach((value: string, key: string) => headers = headers.append(key, value));
-
     return headers;
   }
 

@@ -5,7 +5,7 @@
     </div>
     <div class="row">
       <div class="col-3 col-md-3 col-sm-12">
-        <app-filter (searchWord)="getWord($event)"></app-filter>
+        <app-filter (searchFilters)="searchFilters($event)"></app-filter>
       </div>
       <div class="col-lg-9 col-sm-12">
         <ul class="row">
@@ -21,7 +21,6 @@
               >
                 RECLAMADO
               </h1>
-
               <div class="card-body">
                 <h5 class="card-title text-center">{{ object.name }}</h5>
                 <p class="card-text">{{ object.description }}</p>
