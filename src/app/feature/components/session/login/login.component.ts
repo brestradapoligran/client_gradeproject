@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form = new FormGroup({
-    email: new FormControl('brayan.estrada.work@gmail.com'),
-    pass: new FormControl('asdqwe')
+    email: new FormControl('prueba1@gmail.com'),
+    pass: new FormControl('123456')
   });
   logged: Boolean = true;
 

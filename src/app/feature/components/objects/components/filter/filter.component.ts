@@ -14,7 +14,8 @@ export class FilterComponent implements OnInit {
 
   word: String = '';
   filters: any;
-  filtersEnabled: any[] = [];
+  objectTypesEnabled: any[] = [];
+  objectStatusesEnabled: any[] = [];
   allFilters: FiltersObjectModel = new FiltersObjectModel();
 
   constructor(private api: ApiService) { }
@@ -25,7 +26,8 @@ export class FilterComponent implements OnInit {
 
   sendSearch() {
     this.allFilters.searchWord = this.word;
-    this.allFilters.objectTypes = this.filtersEnabled;
+    this.allFilters.objectTypes = this.objectTypesEnabled;
+    this.allFilters.objectStatuses = this.objectStatusesEnabled;
     this.searchFilters.emit(this.allFilters);
   }
 
@@ -34,14 +36,21 @@ export class FilterComponent implements OnInit {
       .subscribe((data: any) => this.filters = data)
   }
 
-  filterResults(objectType: any, e: any) {
+  filterResultsObjectStatus(objectStatus: any, e: any) {
     if (e.currentTarget.checked) {
-      this.filtersEnabled.push(objectType)
+      this.objectStatusesEnabled.push(objectStatus)
     } else {
-      this.filtersEnabled = this.filtersEnabled.filter(obj => obj !== objectType)
+      this.objectStatusesEnabled = this.objectStatusesEnabled.filter(obj => obj !== objectStatus)
     }
-    this.allFilters.searchWord = this.word;
-    this.allFilters.objectTypes = this.filtersEnabled;
+    this.sendSearch();
+  }
+
+  filterResultsObjectTypes(objectType: any, e: any) {
+    if (e.currentTarget.checked) {
+      this.objectTypesEnabled.push(objectType)
+    } else {
+      this.objectTypesEnabled = this.objectTypesEnabled.filter(obj => obj !== objectType)
+    }
     this.sendSearch();
   }
 
