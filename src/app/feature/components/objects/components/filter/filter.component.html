@@ -17,11 +17,19 @@
   <div class="card full-width">
     <div class="card-body">
       <h5 class="card-title text-center responsive-text">Filtros</h5>
+      <h6 class="card-subtitle mb-2 text-muted responsive-text">Estado</h6>
+      <ul>
+        <li class="form-check form-switch" *ngFor="let filter of filters.objectStatuses">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+            (change)="filterResultsObjectStatus(filter, $event)" />
+          <label class="form-check-label responsive-text">{{filter}}</label>
+        </li>
+      </ul>
       <h6 class="card-subtitle mb-2 text-muted responsive-text">Tipo</h6>
       <ul>
-        <li class="form-check form-switch" *ngFor="let filter of filters">
+        <li class="form-check form-switch" *ngFor="let filter of filters.objectTypes">
           <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
-            (change)="filterResults(filter, $event)" />
+            (change)="filterResultsObjectTypes(filter, $event)" />
           <label class="form-check-label responsive-text">{{filter}}</label>
         </li>
       </ul>
