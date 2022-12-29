@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ObjectStatusEnum } from 'src/app/feature/models/enum/ObjectStatusEnum';
+import { ObjectTypeEnum } from 'src/app/feature/models/enum/ObjectTypeEnum';
 import ObjectModel from 'src/app/feature/models/object.model';
 import { ApiService } from 'src/app/feature/services/api/api.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
@@ -19,13 +21,23 @@ export class CreateObjectComponent implements OnInit {
     id: new FormControl(''),
     name: new FormControl(''),
     description: new FormControl(''),
+    status: new FormControl(''),
+    type: new FormControl('')
   });
+
+  statuses: string[] = Object.keys(ObjectStatusEnum).filter((item) => isNaN(Number(item)));
+  objectTypes: string[] = Object.keys(ObjectTypeEnum).filter((item) => isNaN(Number(item)));
 
   constructor(private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
     this.changeComponentToEdit();
+    console.log(this.objectTypes)
+  }
+
+  onSubmit() {
+    this.id == undefined ? this.createObject() : this.updateObject();
   }
 
   createObject() {
@@ -33,8 +45,9 @@ export class CreateObjectComponent implements OnInit {
       .subscribe(() => this.router.navigate(['objects/']));
   }
 
-  onSubmit() {
-    this.createObject();
+  updateObject() {
+    this.api.callApi(`api/v1/object/${this.id}`, ApiMethods.PUT, true, new Map(), this.object.value)
+      .subscribe(() => this.router.navigate(['objects/']));
   }
 
   changeComponentToEdit() {
@@ -50,9 +63,13 @@ export class CreateObjectComponent implements OnInit {
         this.object.setValue({
           id: data.id,
           name: data.name,
-          description: data.description
+          description: data.description,
+          status: data.status,
+          type: data.type
         });
       });
   }
+
+
 
 }

@@ -1,109 +1,74 @@
 <section id="create-user">
   <div class="container">
     <div>
-      <label class="title text-center mt-3">{{ title }}</label>
+      <label class="title text-center">{{ title }}</label>
     </div>
-    <div class="form container card p-4 mb-5 mt-3">
+    <div class="form container card p-4 mb-5">
       <div>
-        <label class="form-title text-center mb-3 responsive-text"
-          >Información del usuario</label
-        >
+        <label class="form-title text-center mb-3 responsive-text">Información del usuario</label>
       </div>
       <form name="form" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-6 col-sm-12 mb-2">
             <div class="form-group">
               <label class="responsive-text">Nombre</label>
-              <input
-                type="text"
-                name="name"
-                required
-                class="form-control"
-                formControlName="name"
-              />
+              <input type="text" name="name" required class="form-control" formControlName="name" />
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2">
             <div class="form-group">
               <label class="responsive-text">Apellido</label>
-              <input
-                type="text"
-                name="lastname"
-                required
-                class="form-control"
-                formControlName="lastName"
-              />
+              <input type="text" name="lastname" required class="form-control" formControlName="lastName" />
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2">
             <div class="form-group">
               <label class="responsive-text">Correo</label>
-              <input
-                type="email"
-                name="email"
-                required
-                class="form-control"
-                formControlName="email"
-              />
+              <input type="email" name="email" required class="form-control" formControlName="email" />
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2">
             <div class="form-group">
               <label class="responsive-text">Rol</label>
-              <select
-                class="form-select responsive-text"
-                formControlName="role"
-              >
+              <select class="form-select responsive-text" formControlName="role">
                 <option selected disabled>Selecciona un rol</option>
-                <option value="ROLE_ADMIN">Administrador</option>
-                <option value="ROLE_SUPERVISOR">Supervisor</option>
+                <option value={{role}} *ngFor="let role of roles">{{ role }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 mb-2">
+            <div class="form-group">
+              <label class="responsive-text">Estado</label>
+              <select class="form-select responsive-text" formControlName="status">
+                <option selected disabled>Selecciona un estado</option>
+                <option value={{status}} *ngFor="let status of userStatuses">{{ status }}</option>
               </select>
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2" *ngIf="id == undefined">
             <div class="form-group">
               <label class="responsive-text">Contraseña</label>
-              <input
-                type="password"
-                name="pass"
-                required
-                class="form-control"
-                formControlName="pass"
-              />
+              <input type="password" name="pass" required class="form-control" formControlName="pass" />
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2" *ngIf="id == undefined">
             <div class="form-group">
               <label class="responsive-text">Confirmar Contraseña</label>
-              <input
-                type="password"
-                name="confirmpass"
-                required
-                class="form-control"
-                formControlName="confirmPass"
-              />
+              <input type="password" name="confirmpass" required class="form-control" formControlName="confirmPass" />
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
               <div class="row">
                 <div class="col-6">
-                  <button
-                    type="button"
-                    ng-disabled="form.$invalid"
-                    class="btn bg-blue pull-right responsive-text"
-                    [routerLink]="['/users/']"
-                  >
+                  <button type="button" ng-disabled="form.$invalid" class="btn bg-blue pull-right responsive-text"
+                    [routerLink]="['/users/']">
                     <i class="fa-solid fa-arrow-left"></i>
                     Volver atrás
                   </button>
                 </div>
                 <div class="col-6">
-                  <button
-                    type="submit"
-                    ng-disabled="form.$invalid"
-                    class="btn bg-blue pull-right responsive-text"
-                  >
+                  <button type="submit" ng-disabled="form.$invalid" class="btn bg-blue pull-right responsive-text">
                     {{ title }}
                     <i class="fa-solid fa-arrow-right"></i>
                   </button>

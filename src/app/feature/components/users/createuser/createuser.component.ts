@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserRoleEnum } from 'src/app/feature/models/enum/UserRolesEnum';
+import { UserStatusEnum } from 'src/app/feature/models/enum/UserStatusEnum';
 import UserModel from 'src/app/feature/models/user.model';
 import { ApiService } from 'src/app/feature/services/api/api.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
@@ -15,6 +17,8 @@ export class CreateuserComponent implements OnInit {
   title: String = "Crear usuario";
   id: String = "";
   user: any;
+  roles: string[] = Object.keys(UserRoleEnum).filter((item) => isNaN(Number(item)));
+  userStatuses: string[] = Object.keys(UserStatusEnum).filter((item) => isNaN(Number(item)));
 
   form = new FormGroup({
     id: new FormControl(''),
@@ -24,6 +28,7 @@ export class CreateuserComponent implements OnInit {
     role: new FormControl(''),
     pass: new FormControl(''),
     confirmPass: new FormControl(''),
+    status: new FormControl('')
   });
 
   constructor(private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute) { }
@@ -64,7 +69,8 @@ export class CreateuserComponent implements OnInit {
           email: data.email,
           role: data.role,
           pass: '',
-          confirmPass: ''
+          confirmPass: '',
+          status: data.status
         });
       });
   }
