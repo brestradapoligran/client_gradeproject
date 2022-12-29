@@ -46,6 +46,6 @@ export class ApiService {
   }
 
   getToken() {
-    return sessionStorage.getItem('token')
+    return localStorage.getItem('token')
   }
 }

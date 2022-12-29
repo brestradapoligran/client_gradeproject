@@ -1,6 +1,7 @@
 export default class FiltersObjectModel {
     searchWord: String = '';
     objectTypes: any[] = [];
+    objectStatuses: any[] = [];
 
     constructor() {
     }
@@ -11,5 +12,9 @@ export default class FiltersObjectModel {
 
     setObjectTypes(objectTypes: any[]) {
         this.objectTypes = objectTypes;
+    }
+
+    setObjectStatuses(objectStatuses: any[]) {
+        this.objectStatuses = objectStatuses;
     }
 }

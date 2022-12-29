@@ -1,9 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import ObjectModel from 'src/app/feature/models/object.model';
 import ObjectTypeModel from 'src/app/feature/models/objet-type.model';
 import FiltersObjectModel from 'src/app/feature/models/request/filters-object.model';
 import { ApiService } from 'src/app/feature/services/api/api.service';
+import { AuthService } from 'src/app/feature/services/auth/AuthService';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
 @Component({
@@ -17,21 +19,29 @@ export class ListComponent implements OnInit {
   searchWord: String = '';
   objectTypes: any[] = [];
   filters: FiltersObjectModel = new FiltersObjectModel();
+  logged: Boolean = false;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, public authService: AuthService, private router: Router) {
+    this.logged = this.authService.isLoggedIn();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.logged = this.authService.isLoggedIn();
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.getObjects();
   }
 
   async getObjects() {
-    await this.api.callApi('api/v1/objects', ApiMethods.GET, true, new Map())
+    await this.api.callApi('api/v1/objects', ApiMethods.GET, false, new Map())
       .subscribe((data: any) => this.objects = data);
   }
 
-  searchFilters(filters: any) {
+  async searchFilters(filters: any) {
     this.filters = filters;
-    this.api.callApi('api/v1/object/search', ApiMethods.POST, true, new Map(), filters)
+    await this.api.callApi('api/v1/object/search', ApiMethods.POST, true, new Map(), filters)
       .subscribe((data: any) => this.objects = data);
   }
 

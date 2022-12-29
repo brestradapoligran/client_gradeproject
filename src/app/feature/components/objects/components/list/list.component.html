@@ -11,14 +11,9 @@
         <ul class="row">
           <li class="col-4 mb-4" *ngFor="let object of objects">
             <div class="card">
-              <img
-                src="../../../../../../assets/img/descarga.jpg"
-                [ngClass]="object.status == 'RECLAMADO' ? 'card-img-top' : ''"
-                alt="..."
-              />
-              <h1
-                [ngClass]="object.status == 'RECLAMADO' ? 'claimed' : 'hiden'"
-              >
+              <img src="../../../../../../assets/img/descarga.jpg"
+                [ngClass]="object.status == 'RECLAMADO' ? 'card-img-top' : ''" alt="..." />
+              <h1 [ngClass]="object.status == 'RECLAMADO' ? 'claimed' : 'hiden'">
                 RECLAMADO
               </h1>
               <div class="card-body">
@@ -27,18 +22,13 @@
               </div>
               <div class="buttons row mb-2">
                 <div class="col-6 p-2 center">
-                  <button
-                    class="btn btn-edit btn-size responsive-text"
-                    [routerLink]="['edit', object.id]"
-                  >
+                  <button class="btn btn-edit btn-size responsive-text" [routerLink]="['edit', object.id]"
+                    *ngIf="logged">
                     Editar
                   </button>
                 </div>
                 <div class="col-6 p-2 center">
-                  <button
-                    class="btn btn-delete btn-size responsive-text"
-                    (click)="onDelete(object.id)"
-                  >
+                  <button class="btn btn-delete btn-size responsive-text" (click)="onDelete(object.id)" *ngIf="logged">
                     Eliminar
                   </button>
                 </div>

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.api.callApi('api/v1/login', ApiMethods.POST, false, new Map(), this.form.value)
       .subscribe((data: any) => {
         if (data)
-          sessionStorage.setItem('token', data.token);
+          localStorage.setItem('token', data.token);
         this.router.navigate(['objects'])
       }, () => {
         this.logged = false;

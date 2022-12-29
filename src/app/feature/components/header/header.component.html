@@ -5,11 +5,16 @@
                 <img src="assets/img/logo.png" alt="">
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a class="nav-link px-2 text-white" [routerLink]="['/objects']" *ngIf="false">Objetos</a></li>
-                <li><a class="nav-link px-2 text-white" [routerLink]="['/users']" *ngIf="false">Usuarios</a></li>
+                <li><a class="nav-link px-2 text-white" [routerLink]="['/objects']" *ngIf="logged">Objetos</a></li>
+                <li><a class="nav-link px-2 text-white" [routerLink]="['/users']" *ngIf="logged">Usuarios</a></li>
             </ul>
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2" [routerLink]="['/session']">Login</button>
+                <button type="button" class="btn btn-outline-light me-2" [routerLink]="['/session']"
+                    *ngIf="!logged">Iniciar Sesión</button>
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-light me-2" (click)="onLogout()" *ngIf="logged">Cerrar
+                    Sesión</button>
             </div>
         </div>
     </div>
