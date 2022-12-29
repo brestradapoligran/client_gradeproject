@@ -1,8 +1,8 @@
-export default class SessionStorage {
+export default class LocalStorage {
 
     constructor() { }
 
     setValue(key: string, value: string) {
-        sessionStorage.setItem(key, value);
+        localStorage.setItem(key, value);
     }
 }

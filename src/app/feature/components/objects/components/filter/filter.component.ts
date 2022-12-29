@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import FiltersObjectModel from 'src/app/feature/models/request/filters-object.model';
 import { ApiService } from 'src/app/feature/services/api/api.service';
+import { AuthService } from 'src/app/feature/services/auth/AuthService';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
 @Component({
@@ -13,15 +15,23 @@ export class FilterComponent implements OnInit {
   @Output() searchFilters = new EventEmitter<FiltersObjectModel>();
 
   word: String = '';
-  filters: any;
+  filters: FiltersObjectModel = new FiltersObjectModel();
   objectTypesEnabled: any[] = [];
   objectStatusesEnabled: any[] = [];
   allFilters: FiltersObjectModel = new FiltersObjectModel();
+  logged: Boolean = false;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, public authService: AuthService, private router: Router) {
+    this.logged = this.authService.isLoggedIn();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.logged = this.authService.isLoggedIn();
+      }
+    });
+    this.getFilters();
+  }
 
   ngOnInit(): void {
-    this.getFilters();
   }
 
   sendSearch() {
@@ -31,8 +41,8 @@ export class FilterComponent implements OnInit {
     this.searchFilters.emit(this.allFilters);
   }
 
-  getFilters() {
-    this.api.callApi(`api/v1/object/filters`, ApiMethods.GET, true, new Map())
+  async getFilters() {
+    await this.api.callApi(`api/v1/object/filters`, ApiMethods.GET, false, new Map())
       .subscribe((data: any) => this.filters = data)
   }
 
