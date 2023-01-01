@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ObjectFeatureTypeEnum } from 'src/app/feature/models/enum/ObjectFeatureTypeEnum';
 import { ObjectStatusEnum } from 'src/app/feature/models/enum/ObjectStatusEnum';
 import { ObjectTypeEnum } from 'src/app/feature/models/enum/ObjectTypeEnum';
+import FeaturesModel from 'src/app/feature/models/features.model';
 import ObjectModel from 'src/app/feature/models/object.model';
 import { ApiService } from 'src/app/feature/services/api/api.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
@@ -17,23 +19,30 @@ export class CreateObjectComponent implements OnInit {
   id: string = '';
   title: string = 'Crear Objeto';
 
-  object = new FormGroup({
+  object = this.fb.group({
     id: new FormControl(''),
     name: new FormControl(''),
     description: new FormControl(''),
     status: new FormControl(''),
-    type: new FormControl('')
+    type: new FormControl(''),
+    features: this.fb.array([])
   });
+
+
+  formGroup: FormGroup;
 
   statuses: string[] = Object.keys(ObjectStatusEnum).filter((item) => isNaN(Number(item)));
   objectTypes: string[] = Object.keys(ObjectTypeEnum).filter((item) => isNaN(Number(item)));
+  featureTypes: string[] = Object.keys(ObjectFeatureTypeEnum).filter((item) => isNaN(Number(item)));
+  featuress: FeaturesModel[] = [];
 
-  constructor(private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder) { }
+
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
     this.changeComponentToEdit();
-    console.log(this.objectTypes)
+
   }
 
   onSubmit() {
@@ -65,11 +74,41 @@ export class CreateObjectComponent implements OnInit {
           name: data.name,
           description: data.description,
           status: data.status,
-          type: data.type
+          type: data.type,
+          features: []
+        });
+
+        data.features.forEach(element => {
+          const features = this.fb.group({
+            name: element.name,
+            description: element.description,
+          });
+
+          this.features.push(features);
         });
       });
   }
 
+  get features() {
+    return this.object.get('features') as FormArray;
+  }
 
+  addFeature() {
+    this.features.push(
+      this.fb.group({
+        name: [''],
+        description: [''],
+      })
+    );
+    this.checkFeatures();
+  }
+
+  removeFeature(index: number) {
+    this.features.removeAt(index);
+  }
+
+  checkFeatures() {
+    console.log(this.features.value.length == 0)
+  }
 
 }
