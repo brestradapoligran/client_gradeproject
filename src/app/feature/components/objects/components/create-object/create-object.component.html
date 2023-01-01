@@ -1,11 +1,11 @@
-<section id="create-object" class="container">
+<section id="create-object" class="container mb-5">
     <div>
         <label class="title text-center">{{ title }}</label>
     </div>
     <div class="center-div">
-        <div class="card p-4 mt-5 form-container">
+        <div class="card p-4 mt-1 form-container">
             <div>
-                <label class="form-title text-center mb-3 responsive-text">Información del objeto</label>
+                <label class="form-title text-center mb-3 responsive-text">Información General</label>
             </div>
             <form name=" myForm" [formGroup]="object" (ngSubmit)="onSubmit()">
                 <div class="login-container">
@@ -28,7 +28,7 @@
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="responsive-text">Estado</label>
-                                <select class="form-select responsive-text" aria-label="Default select example"
+                                <select class="form-select" aria-label="Default select example"
                                     formControlName="status">
                                     <option selected disabled>Selecciona una opción</option>
                                     <option value={{status}} *ngFor="let status of statuses">{{ status }}</option>
@@ -39,8 +39,7 @@
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="responsive-text">Tipo de objeto</label>
-                                <select class="form-select responsive-text" aria-label="Default select example"
-                                    formControlName="type">
+                                <select class="form-select" aria-label="Default select example" formControlName="type">
                                     <option selected disabled>Selecciona una opción</option>
                                     <option value={{objectType}} *ngFor="let objectType of objectTypes">{{ objectType }}
                                     </option>
@@ -49,46 +48,70 @@
                         </div>
 
                         <hr class="hr hr-blurry" />
-                        <div class="col-md-6 mb-3">
-                            <div class="form-group">
-                                <label class="responsive-text">Característica</label>
-                                <select class="form-select responsive-text" aria-label="Default select example">
-                                    <option selected disabled>Open this select menu</option>
-                                    <option value="1">Color</option>
-                                    <option value="2">Forma</option>
-                                </select>
-                            </div>
+                        <div>
+                            <label class="form-title text-center mb-3 responsive-text">Características</label>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="form-group">
-                                <label class="responsive-text">Descripción</label>
-                                <input type="text" name="pass" ng-model="user.password" required class="form-control" />
+                        <div class="mb-3" formArrayName="features">
+                            <div *ngIf="this.features.value.length == 0">
+                                <div class="width-full mb-3">
+                                    <label class="validation-empty">Aún no tienes características
+                                        creadas, clickea el + para crear una nueva.</label>
+                                </div>
                             </div>
-                        </div>
-
-
-                        <hr class="hr hr-blurry" />
-                        <div class="col-md-6 mb-3">
-                            <div class="form-group">
-                                <label class="responsive-text">Característica</label>
-                                <select class="form-select responsive-text" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Color</option>
-                                    <option value="2">Forma</option>
-                                </select>
+                            <div *ngIf="this.features.value.length != 0">
+                                <div class="row">
+                                    <div class="col col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-title  mb-3 responsive-text">Descripción del
+                                                objeto</label>
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-title mb-3 responsive-text">Tipo de
+                                                característica</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="form-group">
-                                <label class="responsive-text">Descripción</label>
-                                <input type="text" name="pass" ng-model="user.password" required class="form-control" />
+                            <ng-container *ngFor="let feature of features.controls; let i = index">
+                                <div class="row" [formGroupName]="i">
+                                    <div class="col col-md-5">
+                                        <div class="mb-3">
+                                            <!--<input type="text" class="form-control" [id]="'programLanguage' + i"
+                                                formControlName="name" />-->
+                                            <select formControlName="name" class="form-select">
+                                                <option value="" selected disabled>Seleccione una opción</option>
+                                                <option value="{{featureType}}"
+                                                    *ngFor="let featureType of featureTypes">{{ featureType }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-5">
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" [id]="'experience' + i"
+                                                formControlName="description" />
+                                        </div>
+                                    </div>
+                                    <div class="col col md-2  text-center">
+                                        <button class="btn btn-danger" type="button" (click)="removeFeature(i)">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <div class="row">
+                                <div class="col col-md-12 text-center">
+                                    <button type="button" (click)="addFeature()" class="btn bg-blue btn-rounded">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="form-group text-center">
-                                <button ng-click="authenticate()" ng-disabled="myForm.$invalid"
-                                    class="btn bg-blue pull-right responsive-text">
+                                <button type="submit" class="btn bg-blue pull-right responsive-text">
                                     {{ title }}
                                 </button>
                             </div>
