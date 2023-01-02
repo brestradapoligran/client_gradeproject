@@ -6,6 +6,7 @@ import ObjectTypeModel from 'src/app/feature/models/objet-type.model';
 import FiltersObjectModel from 'src/app/feature/models/request/filters-object.model';
 import { ApiService } from 'src/app/feature/services/api/api.service';
 import { AuthService } from 'src/app/feature/services/auth/AuthService';
+import { ToastService } from 'src/app/feature/services/toast/toast.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
 @Component({
@@ -21,7 +22,7 @@ export class ListComponent implements OnInit {
   filters: FiltersObjectModel = new FiltersObjectModel();
   logged: Boolean = false;
 
-  constructor(private api: ApiService, public authService: AuthService, private router: Router) {
+  constructor(private api: ApiService, public authService: AuthService, private router: Router, private toastService: ToastService) {
     this.logged = this.authService.isLoggedIn();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -45,9 +46,12 @@ export class ListComponent implements OnInit {
       .subscribe((data: any) => this.objects = data);
   }
 
-  async onDelete(id: string) {
-    await this.api.callApi(`api/v1/object/${id}`, ApiMethods.DELETE, true, new Map())
-      .subscribe(() => this.searchFilters(this.filters));
+  async onDelete(object: ObjectModel) {
+    await this.api.callApi(`api/v1/object/${object.id}`, ApiMethods.DELETE, true, new Map())
+      .subscribe(() => {
+        this.searchFilters(this.filters);
+        this.toastService.showErrorToast('Eliminación Correcta', `Se eliminó correctamente el objeto: ${object.name}`)
+      });
   }
 
 }
