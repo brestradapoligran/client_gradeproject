@@ -6,7 +6,9 @@ import { ObjectStatusEnum } from 'src/app/feature/models/enum/ObjectStatusEnum';
 import { ObjectTypeEnum } from 'src/app/feature/models/enum/ObjectTypeEnum';
 import FeaturesModel from 'src/app/feature/models/features.model';
 import ObjectModel from 'src/app/feature/models/object.model';
+import { EventTypes } from 'src/app/feature/models/toast/event-types';
 import { ApiService } from 'src/app/feature/services/api/api.service';
+import { ToastService } from 'src/app/feature/services/toast/toast.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
 @Component({
@@ -18,6 +20,12 @@ export class CreateObjectComponent implements OnInit {
 
   id: string = '';
   title: string = 'Crear Objeto';
+  EventTypes = EventTypes;
+  formGroup: FormGroup;
+  statuses: string[] = Object.keys(ObjectStatusEnum).filter((item) => isNaN(Number(item)));
+  objectTypes: string[] = Object.keys(ObjectTypeEnum).filter((item) => isNaN(Number(item)));
+  featureTypes: string[] = Object.keys(ObjectFeatureTypeEnum).filter((item) => isNaN(Number(item)));
+  featuress: FeaturesModel[] = [];
 
   object = this.fb.group({
     id: new FormControl(''),
@@ -28,15 +36,11 @@ export class CreateObjectComponent implements OnInit {
     features: this.fb.array([])
   });
 
-
-  formGroup: FormGroup;
-
-  statuses: string[] = Object.keys(ObjectStatusEnum).filter((item) => isNaN(Number(item)));
-  objectTypes: string[] = Object.keys(ObjectTypeEnum).filter((item) => isNaN(Number(item)));
-  featureTypes: string[] = Object.keys(ObjectFeatureTypeEnum).filter((item) => isNaN(Number(item)));
-  featuress: FeaturesModel[] = [];
-
-  constructor(private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private api: ApiService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private toastService: ToastService) { }
 
 
   ngOnInit(): void {
@@ -51,12 +55,18 @@ export class CreateObjectComponent implements OnInit {
 
   createObject() {
     this.api.callApi('api/v1/object', ApiMethods.POST, true, new Map(), this.object.value)
-      .subscribe(() => this.router.navigate(['objects/']));
+      .subscribe(() => {
+        this.router.navigate(['objects/']);
+        this.showToast('Creación Correcta', `Se creó el objeto ${this.object.value.name} correctamente`, EventTypes.Success)
+      });
   }
 
   updateObject() {
     this.api.callApi(`api/v1/object/${this.id}`, ApiMethods.PUT, true, new Map(), this.object.value)
-      .subscribe(() => this.router.navigate(['objects/']));
+      .subscribe(() => {
+        this.router.navigate(['objects/'])
+        this.showToast('Actualización Correcta', `Se actualizó el objeto ${this.object.value.name} correctamente`, EventTypes.Success)
+      });
   }
 
   changeComponentToEdit() {
@@ -100,15 +110,20 @@ export class CreateObjectComponent implements OnInit {
         description: [''],
       })
     );
-    this.checkFeatures();
   }
 
   removeFeature(index: number) {
     this.features.removeAt(index);
+    this.showToast('Eliminación Exitosa', 'La característica se eliminó exitosamente', EventTypes.Error);
   }
 
-  checkFeatures() {
-    console.log(this.features.value.length == 0)
-  }
+  showToast(title: string, message: string, eventType: EventTypes) {
+    switch (eventType) {
+      case EventTypes.Error: this.toastService.showErrorToast(title, message);
+        break;
+      case EventTypes.Success: this.toastService.showSuccessToast(title, message);
+        break;
+    }
 
+  }
 }
