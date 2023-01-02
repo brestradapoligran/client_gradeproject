@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { EventTypes } from 'src/app/feature/models/toast/event-types';
-import { ToastService } from './feature/services/toast/toast.service';
 
 @Component({
   selector: 'app-root',

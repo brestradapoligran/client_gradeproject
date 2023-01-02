@@ -16,11 +16,13 @@ import { ApiMethods } from 'src/app/feature/utils/api-methods';
 })
 export class ListComponent implements OnInit {
 
+  formModal: any;
   objects: ObjectModel[] = [];
   searchWord: String = '';
   objectTypes: any[] = [];
   filters: FiltersObjectModel = new FiltersObjectModel();
   logged: Boolean = false;
+  objectModalValidation: ObjectModel = new ObjectModel('', '', '', '');
 
   constructor(private api: ApiService, public authService: AuthService, private router: Router, private toastService: ToastService) {
     this.logged = this.authService.isLoggedIn();
@@ -33,6 +35,9 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getObjects();
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('myModal')
+    );
   }
 
   async getObjects() {
@@ -46,12 +51,27 @@ export class ListComponent implements OnInit {
       .subscribe((data: any) => this.objects = data);
   }
 
-  async onDelete(object: ObjectModel) {
-    await this.api.callApi(`api/v1/object/${object.id}`, ApiMethods.DELETE, true, new Map())
+  onDelete(object: ObjectModel) {
+    this.validationOption(object);
+
+  }
+
+  async deleteObject() {
+    await this.api.callApi(`api/v1/object/${this.objectModalValidation.id}`, ApiMethods.DELETE, true, new Map())
       .subscribe(() => {
         this.searchFilters(this.filters);
-        this.toastService.showErrorToast('Eliminación Correcta', `Se eliminó correctamente el objeto: ${object.name}`)
+        this.formModal.hide();
+        this.toastService.showErrorToast('Eliminación Correcta', `Se eliminó correctamente el objeto: ${this.objectModalValidation.name}`)
       });
+  }
+
+  validationOption(object: ObjectModel) {
+    this.objectModalValidation = object;
+    this.formModal.show();
+  }
+
+  onDeleteModal() {
+    this.deleteObject();
   }
 
 }
