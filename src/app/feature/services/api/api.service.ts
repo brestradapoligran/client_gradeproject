@@ -38,7 +38,7 @@ export class ApiService {
 
     if (auth) {
       let api_key = this.getToken();
-      headers = headers.append('Authorization', `Bearer ${api_key}`);
+      headers = headers.append('Authorization', api_key);
     }
 
     newHeaders.forEach((value: string, key: string) => headers = headers.append(key, value));
