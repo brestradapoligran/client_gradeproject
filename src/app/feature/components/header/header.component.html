@@ -1,43 +1,37 @@
 <header class="px-3 py-1 bg-blue text-white">
-  <div class="container">
-    <div
-      class="d-flex align-items-center justify-content-center justify-content-lg-start prueba"
+  <div class="d-flex align-items-center justify-content-around prueba">
+    <a
+      [routerLink]="['/']"
+      class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
     >
-      <a
-        [routerLink]="['/']"
-        class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-      >
-        <img src="assets/img/logo.png" alt="" />
-      </a>
-      <ul
-        class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-      >
-        <li>
-          <a
-            class="nav-link px-2 text-white"
-            [routerLink]="['/objects']"
-            *ngIf="true"
-            >Objetos</a
-          >
-        </li>
-        <li>
-          <a
-            class="nav-link px-2 text-white"
-            [routerLink]="['/users']"
-            *ngIf="true"
-            >Usuarios</a
-          >
-        </li>
-      </ul>
-      <div class="text-end">
-        <button
-          type="button"
-          class="btn btn-outline-light me-2"
-          [routerLink]="['/session']"
+      <img src="assets/img/logo.png" alt="" />
+    </a>
+    <ul class="nav mb-2 justify-content-center mb-md-0">
+      <li>
+        <a
+          class="nav-link px-2 text-white"
+          [routerLink]="['/objects']"
+          *ngIf="true"
+          >Objetos</a
         >
-          Login
-        </button>
-      </div>
+      </li>
+      <li>
+        <a
+          class="nav-link px-2 text-white"
+          [routerLink]="['/users']"
+          *ngIf="true"
+          >Usuarios</a
+        >
+      </li>
+    </ul>
+    <div class="text-end">
+      <button
+        type="button"
+        class="btn btn-outline-light me-2"
+        [routerLink]="['/session']"
+      >
+        Login
+      </button>
     </div>
   </div>
 </header>

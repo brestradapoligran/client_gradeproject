@@ -17,6 +17,7 @@
     background-color: #fff;
     width: 50%;
     margin-top: -7%;
+    border-radius: 7px;
 }
 
 .center-div {
@@ -31,7 +32,7 @@
 }
 
 .responsive-text{
-    font-size: 1vw;
+    font-size: 1rem;
 }
 
 a {
