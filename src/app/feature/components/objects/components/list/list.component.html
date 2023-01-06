@@ -11,12 +11,12 @@
         <ul class="row">
           <li class="col-4 mb-4" *ngFor="let object of objects">
             <div class="card">
-              <img src="../../../../../../assets/img/descarga.jpg"
+              <img src="../../../../../../assets/img/descarga.jpg" [routerLink]="['edit', object.id]"
                 [ngClass]="object.status == 'RECLAMADO' ? 'card-img-top' : ''" alt="..." />
               <h1 [ngClass]="object.status == 'RECLAMADO' ? 'claimed' : 'hiden'">
                 RECLAMADO
               </h1>
-              <div class="card-body">
+              <div class="card-body" [routerLink]="['edit', object.id]">
                 <h5 class="card-title text-center">{{ object.name }}</h5>
                 <p class="card-text">{{ object.description }}</p>
               </div>
