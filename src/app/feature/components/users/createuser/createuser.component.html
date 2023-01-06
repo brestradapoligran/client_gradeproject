@@ -45,13 +45,13 @@
               </select>
             </div>
           </div>
-          <div class="col-md-6 col-sm-12 mb-2" *ngIf="id == undefined">
+          <div class="col-md-6 col-sm-12 mb-2" *ngIf="userId.value == undefined">
             <div class="form-group">
               <label class="responsive-text">Contraseña</label>
               <input type="password" name="pass" required class="form-control" formControlName="pass" />
             </div>
           </div>
-          <div class="col-md-6 col-sm-12 mb-2" *ngIf="id == undefined">
+          <div class="col-md-6 col-sm-12 mb-2" *ngIf="userId.value == undefined">
             <div class="form-group">
               <label class="responsive-text">Confirmar Contraseña</label>
               <input type="password" name="confirmpass" required class="form-control" formControlName="confirmPass" />

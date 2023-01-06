@@ -21,24 +21,19 @@
               >
                 RECLAMADO
               </h1>
-              <div class="card-body">
+              <div class="card-body" [routerLink]="['edit', object.id]">
                 <h5 class="card-title text-center">{{ object.name }}</h5>
                 <p class="card-text">{{ object.description }}</p>
               </div>
               <div class="buttons row mb-2">
                 <div class="col-6 p-2 center">
-                  <button
-                    class="btn btn-edit btn-size responsive-text"
-                    [routerLink]="['edit', object.id]"
-                  >
+                  <button class="btn btn-edit btn-size responsive-text" [routerLink]="['edit', object.id]"
+                    *ngIf="logged">
                     Editar
                   </button>
                 </div>
                 <div class="col-6 p-2 center">
-                  <button
-                    class="btn btn-delete btn-size responsive-text"
-                    (click)="onDelete(object.id)"
-                  >
+                  <button class="btn btn-delete btn-size responsive-text" (click)="onDelete(object)" *ngIf="logged">
                     Eliminar
                   </button>
                 </div>
@@ -50,3 +45,27 @@
     </div>
   </div>
 </section>
+
+
+  <!--form modal-->
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminación de objeto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3>¿Seguro quieres eliminar el objeto <strong>{{ objectModalValidation.name }}</strong>?</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-delete" (click)="deleteObject()">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/feature/services/api/api.service';
+import { ToastService } from 'src/app/feature/services/toast/toast.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
 @Component({
@@ -17,7 +18,7 @@ export class ResetpasswordComponent implements OnInit {
     confirmpass: new FormControl('')
   });
 
-  constructor(private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private api: ApiService, private router: Router, private activatedRoute: ActivatedRoute, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.token = this.activatedRoute.snapshot.params["token"];
@@ -28,7 +29,10 @@ export class ResetpasswordComponent implements OnInit {
     let headers = new Map<string, string>();
     headers.set('Authorization', `Bearer ${this.token}`)
     this.api.callApi('api/v1/user/resetpassword', ApiMethods.POST, false, headers, this.formGroup.value)
-      .subscribe(() => this.router.navigate(['session']));
+      .subscribe(() => {
+        this.router.navigate(['session']);
+        this.toastService.showSuccessToast('Actualización Exitosa', `Se actualizó correctamente la contraseña`)
+      });
   }
 
 }

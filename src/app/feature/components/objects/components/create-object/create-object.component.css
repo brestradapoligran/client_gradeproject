@@ -26,6 +26,22 @@
     font-weight: bold;
     letter-spacing: 1px;
 }
+
 .responsive-text{
     font-size: 1rem;
+
+.btn-rounded {
+    border-radius: 50%;
+}
+
+.bg-blue:hover {
+    background-color: #124772;
+}
+
+.validation-empty {
+    width: 100%;
+    font-size: 1rem;
+    color: #0F385A;
+    font-weight: bolder;
+    text-align: center;
 }

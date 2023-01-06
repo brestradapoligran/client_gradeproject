@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from './components'
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [],
@@ -12,13 +13,13 @@ import { ModalModule } from './components'
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
 
   ], exports: [
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    ModalModule
+    ModalModule,
   ]
 })
 export class SharedModule { }
