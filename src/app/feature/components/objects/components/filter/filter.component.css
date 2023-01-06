@@ -39,5 +39,5 @@ input[type=text]:focus {
     width: 80%;
 }
 .responsive-text{
-    font-size: 1vw;
+    font-size: 1rem;
 }
