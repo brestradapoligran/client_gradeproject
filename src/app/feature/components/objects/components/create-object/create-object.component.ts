@@ -46,7 +46,6 @@ export class CreateObjectComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params["id"];
     this.changeComponentToEdit();
-
   }
 
   onSubmit() {
