@@ -2,18 +2,35 @@
     height: 86vh;
     background-image: url('/assets/img/poligran-campus.png');
     background-size: cover;
+    position: relative;
 }
 
 .landing-message {
-    margin: auto;
-    margin-top: 25vh;
-    width: 75%;
     padding: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: auto;
 }
 
 .landing-text{
-    font-size: 3vw;
+    font-size: 1rem;
     color: white;
     text-align: center;
     font-weight: bolder;
+}
+
+@media (min-width: 768px) {
+    .landing-text{
+        font-size: 1.5rem;
+    }
+
+}
+@media (min-width: 1440px) {
+    .landing-text{
+        font-size: 3rem;
+    }
+
 }

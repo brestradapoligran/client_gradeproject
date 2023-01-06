@@ -15,9 +15,9 @@
 
 .login-form {
     background-color: #fff;
-    width: 50%;
     margin-top: -7%;
     border-radius: 7px;
+    width: 100%;
 }
 
 .center-div {
@@ -38,4 +38,10 @@
 a {
     text-decoration: none;
     font-size: 13px;
+}
+@media (min-width: 768px) {
+    .login-form {
+        width: 75%;
+    }
+
 }

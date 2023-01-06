@@ -4,16 +4,21 @@
       <label class="title text-center responsive-text">OBJETOS</label>
     </div>
     <div class="row">
-      <div class="col-3 col-md-3 col-sm-12">
+      <div class="col-sm-12 col-md-12 col-lg">
         <app-filter (searchFilters)="searchFilters($event)"></app-filter>
       </div>
       <div class="col-lg-9 col-sm-12">
         <ul class="row">
-          <li class="col-4 mb-4" *ngFor="let object of objects">
+          <li class="col-sm-6 col-lg-4 mb-4" *ngFor="let object of objects">
             <div class="card">
-              <img src="../../../../../../assets/img/descarga.jpg" [routerLink]="['edit', object.id]"
-                [ngClass]="object.status == 'RECLAMADO' ? 'card-img-top' : ''" alt="..." />
-              <h1 [ngClass]="object.status == 'RECLAMADO' ? 'claimed' : 'hiden'">
+              <img
+                src="../../../../../../assets/img/descarga.jpg"
+                [ngClass]="object.status == 'RECLAMADO' ? 'card-img-top' : ''"
+                alt="..."
+              />
+              <h1
+                [ngClass]="object.status == 'RECLAMADO' ? 'claimed' : 'hiden'"
+              >
                 RECLAMADO
               </h1>
               <div class="card-body" [routerLink]="['edit', object.id]">
@@ -39,6 +44,8 @@
       </div>
     </div>
   </div>
+</section>
+
 
   <!--form modal-->
   <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,4 +69,3 @@
       </div>
     </div>
   </div>
-</section>
