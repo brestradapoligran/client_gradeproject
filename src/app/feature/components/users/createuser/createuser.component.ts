@@ -40,6 +40,8 @@ export class CreateuserComponent implements OnInit {
     private toastService: ToastService) { }
 
   ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.params["id"];
+    console.log(this.id)
     this.form.patchValue({
       id: this.activatedRoute.snapshot.params["id"]
     });
@@ -67,40 +69,31 @@ export class CreateuserComponent implements OnInit {
   }
 
   loadUserData() {
-    if (this.activatedRoute.snapshot.url[0].path == 'myuser') {
-      this.api.callApi('api/v1/user', ApiMethods.GET, true, new Map())
-        .subscribe((data: any) => {
-          this.title = "Editar Usuario"
-          this.form.setValue({
-            id: data.id,
-            name: data.name,
-            lastName: data.lastName,
-            email: data.email,
-            role: data.role,
-            pass: '',
-            confirmPass: '',
-            status: data.status
-          })
-        });
-    } else if (this.activatedRoute.snapshot.url[0].path == 'edit') {
+    if (this.form.value.id == '' || this.form.value.id == undefined) {
+      this.title = "Crear Usuario"
+    } else {
       this.title = "Editar Usuario"
       this.api.callApi(`api/v1/user/${this.id}`, ApiMethods.GET, true, new Map())
         .subscribe((data: any) => {
-          this.form.setValue({
-            id: data.id,
-            name: data.name,
-            lastName: data.lastName,
-            email: data.email,
-            role: data.role,
-            pass: '',
-            confirmPass: '',
-            status: data.status
-          });
+          this.setValue(data);
         });
     }
   }
 
   get userId() {
     return this.form.get('id')
+  }
+
+  setValue(data: any) {
+    this.form.setValue({
+      id: data.id,
+      name: data.name,
+      lastName: data.lastName,
+      email: data.email,
+      role: data.role,
+      pass: '',
+      confirmPass: '',
+      status: data.status
+    });
   }
 }
