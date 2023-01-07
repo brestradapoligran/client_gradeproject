@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DocumentTypeEnum } from 'src/app/feature/models/enum/DocumentTypeEnum';
 import { ObjectFeatureTypeEnum } from 'src/app/feature/models/enum/ObjectFeatureTypeEnum';
 import { ObjectStatusEnum } from 'src/app/feature/models/enum/ObjectStatusEnum';
 import { ObjectTypeEnum } from 'src/app/feature/models/enum/ObjectTypeEnum';
+import { UserTypeEnum } from 'src/app/feature/models/enum/UserTypeEnum';
 import FeaturesModel from 'src/app/feature/models/features.model';
 import ObjectModel from 'src/app/feature/models/object.model';
 import { EventTypes } from 'src/app/feature/models/toast/event-types';
@@ -25,6 +27,8 @@ export class CreateObjectComponent implements OnInit {
   statuses: string[] = Object.keys(ObjectStatusEnum).filter((item) => isNaN(Number(item)));
   objectTypes: string[] = Object.keys(ObjectTypeEnum).filter((item) => isNaN(Number(item)));
   featureTypes: string[] = Object.keys(ObjectFeatureTypeEnum).filter((item) => isNaN(Number(item)));
+  userTypes: string[] = Object.keys(UserTypeEnum).filter((item) => isNaN(Number(item)));
+  documentTypes: string[] = Object.keys(DocumentTypeEnum).filter((item) => isNaN(Number(item)));
   featuress: FeaturesModel[] = [];
 
   object = this.fb.group({
@@ -33,7 +37,15 @@ export class CreateObjectComponent implements OnInit {
     description: new FormControl(''),
     status: new FormControl(''),
     type: new FormControl(''),
-    features: this.fb.array([])
+    features: this.fb.array([]),
+    claimer: this.fb.group({
+      name: new FormControl(''),
+      lastName: new FormControl(''),
+      document: new FormControl(''),
+      documentType: new FormControl(''),
+      contact: new FormControl(''),
+      userType: new FormControl('')
+    })
   });
 
   constructor(private api: ApiService,
@@ -84,7 +96,8 @@ export class CreateObjectComponent implements OnInit {
           description: data.description,
           status: data.status,
           type: data.type,
-          features: []
+          features: [],
+          claimer: data.claimer
         });
 
         data.features.forEach(element => {
