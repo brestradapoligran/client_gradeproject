@@ -14,6 +14,7 @@ export class ResetpasswordComponent implements OnInit {
 
   token: string = '';
   formGroup: FormGroup = new FormGroup({
+    oldPass: new FormControl(''),
     pass: new FormControl(''),
     confirmpass: new FormControl('')
   });
@@ -26,6 +27,11 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   onSubmit() {
+    this.token == undefined ? this.updatePassword() : this.resetPasssword();
+  }
+
+  resetPasssword() {
+    console.log('qwe')
     let headers = new Map<string, string>();
     headers.set('Authorization', `Bearer ${this.token}`)
     this.api.callApi('api/v1/user/resetpassword', ApiMethods.POST, false, headers, this.formGroup.value)
@@ -34,5 +40,16 @@ export class ResetpasswordComponent implements OnInit {
         this.toastService.showSuccessToast('Actualización Exitosa', `Se actualizó correctamente la contraseña`)
       });
   }
+
+  updatePassword() {
+    console.log('asd')
+    this.api.callApi('api/v1/user/updatepassword', ApiMethods.POST, true, new Map<string, string>, this.formGroup.value)
+      .subscribe(() => {
+        this.router.navigate(['session']);
+        this.toastService.showSuccessToast('Actualización Exitosa', `Se actualizó correctamente la contraseña`)
+      });
+  }
+
+
 
 }

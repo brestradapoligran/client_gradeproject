@@ -1,73 +1,40 @@
 <header class="px-3 py-1 bg-blue text-white">
-  <div class="d-flex align-items-center justify-content-around prueba">
-    <a
-      [routerLink]="['/']"
-      class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-    >
-      <img src="assets/img/logo.png" alt="" />
-    </a>
-    <ul class="nav mb-2 justify-content-center mb-md-0">
-      <li>
-        <a
-          class="nav-link px-2 text-white"
-          [routerLink]="['/objects']"
-          *ngIf="true"
-          >Objetos</a
-        >
-      </li>
-      <li>
-        <a
-          class="nav-link px-2 text-white"
-          [routerLink]="['/users']"
-          *ngIf="true"
-          >Usuarios</a
-        >
-      </li>
-    </ul>
-    <div class="text-end">
-      <button
-        type="button"
-        class="btn btn-outline-light"
-        [routerLink]="['/session']"
-      >
-        Login
-      </button>
-    </div>
-    <div class="text-end" *ngIf="logged">
-      <div class="flex-shrink-0 dropdown" data-bs-toggle="dropdown">
-        <a
-          href="#"
-          class="d-block link-dark text-decoration-none dropdown-toggle"
-          id="dropdownUser2"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="/assets/img/user.png"
-            alt="mdo"
-            width="32"
-            height="32"
-            class="rounded-circle user-img"
-          />
+    <div class="d-flex align-items-center justify-content-around prueba">
+        <a [routerLink]="['/']" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+            <img src="assets/img/logo.png" alt="" />
         </a>
-        <ul
-          class="dropdown-menu text-small shadow"
-          aria-labelledby="dropdownUser2"
-        >
-          <li>
-            <a class="dropdown-item" [routerLink]="['/users/myuser']"
-              >Mi Perfil</a
-            >
-          </li>
-          <li><a class="dropdown-item" href="#">Cambiar Contraseña</a></li>
-          <li>
-            <hr class="dropdown-divider" />
-          </li>
-          <li>
-            <a class="dropdown-item" (click)="onLogout()">Cerrar Sesión</a>
-          </li>
+        <ul class="nav mb-2 justify-content-center mb-md-0">
+            <li>
+                <a class="nav-link px-2 text-white" [routerLink]="['/objects']" *ngIf="true">Objetos</a>
+            </li>
+            <li>
+                <a class="nav-link px-2 text-white" [routerLink]="['/users']" *ngIf="true">Usuarios</a>
+            </li>
         </ul>
-      </div>
+        <div class="text-end">
+            <button type="button" class="btn btn-outline-light" [routerLink]="['/session']" *ngIf="!logged">
+                Login
+            </button>
+        </div>
+        <div class="text-end" *ngIf="logged">
+            <div class="flex-shrink-0 dropdown" data-bs-toggle="dropdown">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/assets/img/user.png" alt="mdo" width="32" height="32" class="rounded-circle user-img" />
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                    <li>
+                        <a class="dropdown-item" [routerLink]="['/users/myuser']">Mi Perfil</a>
+                    </li>
+                    <li><a class="dropdown-item" [routerLink]="['/session/resetpassword']">Cambiar Contraseña</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                        <a class="dropdown-item" (click)="onLogout()">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </header>
