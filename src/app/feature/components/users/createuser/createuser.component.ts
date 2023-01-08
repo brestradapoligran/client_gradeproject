@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { UserRoleEnum } from 'src/app/feature/models/enum/UserRolesEnum';
@@ -9,6 +9,7 @@ import UserModel from 'src/app/feature/models/user.model';
 import { ApiService } from 'src/app/feature/services/api/api.service';
 import { ToastService } from 'src/app/feature/services/toast/toast.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
+import Validation from 'src/app/feature/utils/validation';
 
 @Component({
   selector: 'app-createuser',
@@ -22,6 +23,7 @@ export class CreateuserComponent implements OnInit {
   user: any;
   roles: string[] = Object.keys(UserRoleEnum).filter((item) => isNaN(Number(item)));
   userStatuses: string[] = Object.keys(UserStatusEnum).filter((item) => isNaN(Number(item)));
+  submitted: Boolean = false;
 
   form = new FormGroup({
     id: new FormControl(''),
@@ -37,11 +39,25 @@ export class CreateuserComponent implements OnInit {
   constructor(private api: ApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private toastService: ToastService) { }
+    private toastService: ToastService,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      id: new FormControl(''),
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.minLength(3), Validators.email]],
+      role: ['', [Validators.required, Validators.minLength(3)]],
+      pass: ['', [Validators.required, Validators.minLength(3)]],
+      confirmPass: ['', [Validators.required, Validators.minLength(3)]],
+      status: ['', [Validators.required, Validators.minLength(3)]]
+    },
+      {
+        validators: [Validation.match('pass', 'confirmPass')]
+      });
     this.id = this.activatedRoute.snapshot.params["id"];
-    console.log(this.id)
+
     this.form.patchValue({
       id: this.activatedRoute.snapshot.params["id"]
     });
@@ -49,10 +65,14 @@ export class CreateuserComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     this.id == undefined ? this.createUser() : this.updateUser();
   }
 
   createUser() {
+    if (this.form.invalid) {
+      return;
+    }
     this.api.callApi('api/v1/user', ApiMethods.POST, true, new Map(), this.form.value)
       .subscribe(() => {
         this.router.navigate(['users/']);
@@ -61,6 +81,9 @@ export class CreateuserComponent implements OnInit {
   }
 
   updateUser() {
+    if (this.form.invalid) {
+      return;
+    }
     this.api.callApi(`api/v1/user/${this.form.value.id}`, ApiMethods.PUT, true, new Map(), this.form.value)
       .subscribe(() => {
         this.router.navigate(['users/']);
@@ -95,5 +118,9 @@ export class CreateuserComponent implements OnInit {
       confirmPass: '',
       status: data.status
     });
+  }
+
+  get usr(): { [key: string]: AbstractControl } {
+    return this.form.controls;
   }
 }

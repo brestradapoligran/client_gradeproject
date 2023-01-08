@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentTypeEnum } from 'src/app/feature/models/enum/DocumentTypeEnum';
 import { ObjectFeatureTypeEnum } from 'src/app/feature/models/enum/ObjectFeatureTypeEnum';
@@ -24,20 +24,20 @@ export class CreateObjectComponent implements OnInit {
   title: string = 'Crear Objeto';
   EventTypes = EventTypes;
   formGroup: FormGroup;
+  submitted: Boolean = false;
   statuses: string[] = Object.keys(ObjectStatusEnum).filter((item) => isNaN(Number(item)));
   objectTypes: string[] = Object.keys(ObjectTypeEnum).filter((item) => isNaN(Number(item)));
   featureTypes: string[] = Object.keys(ObjectFeatureTypeEnum).filter((item) => isNaN(Number(item)));
   userTypes: string[] = Object.keys(UserTypeEnum).filter((item) => isNaN(Number(item)));
   documentTypes: string[] = Object.keys(DocumentTypeEnum).filter((item) => isNaN(Number(item)));
-  featuress: FeaturesModel[] = [];
 
-  object = this.fb.group({
+  object = new FormGroup({
     id: new FormControl(''),
     name: new FormControl(''),
     description: new FormControl(''),
     status: new FormControl(''),
     type: new FormControl(''),
-    features: this.fb.array([]),
+    features: new FormArray([]),
     claimer: this.fb.group({
       name: new FormControl(''),
       lastName: new FormControl(''),
@@ -48,6 +48,11 @@ export class CreateObjectComponent implements OnInit {
     })
   });
 
+  featureForm = this.fb.group({
+    name: new FormControl(''),
+    description: new FormControl('', [Validators.required, Validators.email]),
+  });
+
   constructor(private api: ApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -56,15 +61,35 @@ export class CreateObjectComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.object = this.fb.group({
+      id: new FormControl(''),
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', [Validators.required, Validators.minLength(3)]],
+      status: ['', [Validators.required, Validators.minLength(3)]],
+      type: ['', [Validators.required, Validators.minLength(3)]],
+      features: this.fb.array([]),
+      claimer: this.fb.group({
+        name: ['', []],
+        lastName: ['', []],
+        document: ['', []],
+        documentType: ['CC', []],
+        contact: ['', []],
+        userType: ['Estudiante', []]
+      })
+    });
     this.id = this.activatedRoute.snapshot.params["id"];
     this.changeComponentToEdit();
   }
 
   onSubmit() {
+    this.submitted = true;
     this.id == undefined ? this.createObject() : this.updateObject();
   }
 
   createObject() {
+    if (this.object.invalid) {
+      return;
+    }
     this.api.callApi('api/v1/object', ApiMethods.POST, true, new Map(), this.object.value)
       .subscribe(() => {
         this.router.navigate(['objects/']);
@@ -73,6 +98,9 @@ export class CreateObjectComponent implements OnInit {
   }
 
   updateObject() {
+    if (this.object.invalid) {
+      return;
+    }
     this.api.callApi(`api/v1/object/${this.id}`, ApiMethods.PUT, true, new Map(), this.object.value)
       .subscribe(() => {
         this.router.navigate(['objects/'])
@@ -116,14 +144,11 @@ export class CreateObjectComponent implements OnInit {
   }
 
   addFeature() {
-    this.features.push(
-      this.fb.group({
-        name: [''],
-        description: [''],
-      })
-    );
+    this.features.push(this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required]
+    }));
   }
-
   removeFeature(index: number) {
     this.features.removeAt(index);
     this.showToast('Eliminación Exitosa', 'La característica se eliminó exitosamente', EventTypes.Error);
@@ -136,6 +161,15 @@ export class CreateObjectComponent implements OnInit {
       case EventTypes.Success: this.toastService.showSuccessToast(title, message);
         break;
     }
-
   }
+
+  get obj(): { [key: string]: AbstractControl } {
+    return this.object.controls;
+  }
+
+  get cla(): { [key: string]: AbstractControl } {
+    return this.object.controls.claimer.controls;
+  }
+
+
 }

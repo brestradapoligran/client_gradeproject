@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/feature/services/api/api.service';
-import { FormControl, FormGroup } from '@angular/forms'
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
 import { Router } from '@angular/router';
 
@@ -13,18 +13,42 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form = new FormGroup({
-    email: new FormControl('prueba1@gmail.com'),
-    pass: new FormControl('123456')
+    email: new FormControl(''),
+    pass: new FormControl('')
   });
-  logged: Boolean = true;
 
-  constructor(private api: ApiService, private router: Router) { }
+  logged: Boolean = true;
+  submitted: Boolean = false;
+
+  constructor(private api: ApiService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      email: ['',
+        [
+          Validators.required,
+          Validators.email
+        ]
+      ],
+      pass: ['',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(40)
+        ]
+      ],
+    });
+  }
 
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
   }
 
   login() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
     this.api.callApi('api/v1/login', ApiMethods.POST, false, new Map(), this.form.value)
       .subscribe((data: any) => {
         if (data)
