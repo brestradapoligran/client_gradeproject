@@ -12,49 +12,98 @@
           <div class="col-md-6 col-sm-12 mb-2">
             <div class="form-group">
               <label class="responsive-text">Nombre</label>
-              <input type="text" name="name" required class="form-control" formControlName="name" />
+              <input type="text" name="name" class="form-control" formControlName="name"
+                [ngClass]="{ 'is-invalid': (submitted && usr['name'].errors)}" />
+              <div class="text-danger" *ngIf="submitted && usr['name'].errors?.['required']">
+                El nombre es obligatorio
+              </div>
+              <div class="text-danger" *ngIf="submitted && usr['name'].errors?.['minlength']">
+                El nombre debe contener al menos 3 letras
+              </div>
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2">
             <div class="form-group">
               <label class="responsive-text">Apellido</label>
-              <input type="text" name="lastname" required class="form-control" formControlName="lastName" />
+              <input type="text" name="lastname" class="form-control" formControlName="lastName"
+                [ngClass]="{ 'is-invalid': (submitted && usr['lastName'].errors)}" />
+              <div class="text-danger" *ngIf="submitted && usr['lastName'].errors?.['required']">
+                El apellido es obligatorio
+              </div>
+              <div class="text-danger" *ngIf="submitted && usr['lastName'].errors?.['minlength']">
+                El nombre debe contener al menos 3 letras
+              </div>
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2">
             <div class="form-group">
               <label class="responsive-text">Correo</label>
-              <input type="email" name="email" required class="form-control" formControlName="email" />
+              <input type="email" name="email" class="form-control" formControlName="email"
+                [ngClass]="{ 'is-invalid': (submitted && usr['email'].errors)}" />
+              <div class="text-danger" *ngIf="submitted && usr['email'].errors?.['required']">
+                El correo es obligatorio
+              </div>
+              <div class="text-danger" *ngIf="submitted && usr['email'].errors?.['minlength']">
+                El correo debe contener al menos 3 letras
+              </div>
+              <div class="text-danger" *ngIf="submitted && usr['email'].errors?.['email']">
+                Debe ingresar un correo válido
+              </div>
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2">
             <div class="form-group">
               <label class="responsive-text">Rol</label>
-              <select class="form-select responsive-text" formControlName="role">
+              <select class="form-select responsive-text" formControlName="role"
+                [ngClass]="{ 'is-invalid': (submitted && usr['role'].invalid)}">
                 <option selected disabled>Selecciona un rol</option>
                 <option value={{role}} *ngFor="let role of roles">{{ role }}</option>
               </select>
+              <div class="text-danger" *ngIf="submitted && usr['role'].invalid && submitted">
+                Seleccione una opción
+              </div>
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2">
             <div class="form-group">
               <label class="responsive-text">Estado</label>
-              <select class="form-select responsive-text" formControlName="status">
+              <select class="form-select responsive-text" formControlName="status"
+                [ngClass]="{ 'is-invalid': (submitted && usr['status'].invalid)}">
                 <option selected disabled>Selecciona un estado</option>
                 <option value={{status}} *ngFor="let status of userStatuses">{{ status }}</option>
               </select>
+              <div class="text-danger" *ngIf="submitted && usr['status'].invalid && submitted">
+                Seleccione una opción
+              </div>
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2" *ngIf="userId.value == undefined">
             <div class="form-group">
               <label class="responsive-text">Contraseña</label>
-              <input type="password" name="pass" required class="form-control" formControlName="pass" />
+              <input type="password" name="pass" class="form-control" formControlName="pass"
+                [ngClass]="{ 'is-invalid': (submitted && usr['pass'].errors)}" />
+              <div class="text-danger" *ngIf="submitted && usr['pass'].errors?.['required']">
+                La contraseña es obligatoria
+              </div>
+              <div class="text-danger" *ngIf="submitted && usr['pass'].errors?.['minlength']">
+                La contraseña debe contener al menos 3 letras
+              </div>
             </div>
           </div>
           <div class="col-md-6 col-sm-12 mb-2" *ngIf="userId.value == undefined">
             <div class="form-group">
               <label class="responsive-text">Confirmar Contraseña</label>
-              <input type="password" name="confirmpass" required class="form-control" formControlName="confirmPass" />
+              <input type="password" name="confirmpass" class="form-control" formControlName="confirmPass"
+                [ngClass]="{ 'is-invalid': (submitted && usr['confirmPass'].errors)}" />
+              <div class="text-danger" *ngIf="submitted && usr['confirmPass'].errors?.['required']">
+                El confirmar contraseña es obligatorio
+              </div>
+              <div class="text-danger" *ngIf="submitted && usr['confirmPass'].errors?.['minlength']">
+                El confirmar contraseña debe contener al menos 3 letras
+              </div>
+              <div class="text-danger" *ngIf="usr['confirmPass'].errors['matching']">
+                Confirm Password does not match
+              </div>
             </div>
           </div>
           <div class="col-md-12">
