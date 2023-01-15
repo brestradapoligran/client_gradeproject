@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentTypeEnum } from 'src/app/feature/models/enum/DocumentTypeEnum';
 import { ObjectFeatureTypeEnum } from 'src/app/feature/models/enum/ObjectFeatureTypeEnum';
 import { ObjectStatusEnum } from 'src/app/feature/models/enum/ObjectStatusEnum';
 import { ObjectTypeEnum } from 'src/app/feature/models/enum/ObjectTypeEnum';
 import { UserTypeEnum } from 'src/app/feature/models/enum/UserTypeEnum';
-import FeaturesModel from 'src/app/feature/models/features.model';
-import ObjectModel from 'src/app/feature/models/object.model';
 import { EventTypes } from 'src/app/feature/models/toast/event-types';
 import { ApiService } from 'src/app/feature/services/api/api.service';
 import { ToastService } from 'src/app/feature/services/toast/toast.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
 @Component({
-  selector: 'app-create-object',
-  templateUrl: './create-object.component.html',
-  styleUrls: ['./create-object.component.css']
+  selector: 'app-updateobject',
+  templateUrl: './updateobject.component.html',
+  styleUrls: ['./updateobject.component.css']
 })
-export class CreateObjectComponent implements OnInit {
+export class UpdateobjectComponent implements OnInit {
 
+  id: string = '';
   EventTypes = EventTypes;
   formGroup: FormGroup;
   submitted: Boolean = false;
@@ -53,6 +52,7 @@ export class CreateObjectComponent implements OnInit {
 
   constructor(private api: ApiService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private toastService: ToastService) { }
 
@@ -74,6 +74,8 @@ export class CreateObjectComponent implements OnInit {
         userType: ['Estudiante', []]
       })
     });
+    this.id = this.activatedRoute.snapshot.params["id"];
+    this.loadObjectData();
   }
 
   onSubmit() {
@@ -81,14 +83,38 @@ export class CreateObjectComponent implements OnInit {
     if (this.object.invalid) {
       return;
     }
-    this.createObject();
+    this.updateObject();
   }
 
-  createObject() {
-    this.api.callApi('api/v1/object', ApiMethods.POST, true, new Map(), this.object.value)
+  updateObject() {
+    this.api.callApi(`api/v1/object/${this.id}`, ApiMethods.PUT, true, new Map(), this.object.value)
       .subscribe(() => {
-        this.router.navigate(['objects/']);
-        this.showToast('Creación Correcta', `Se creó el objeto ${this.object.value.name} correctamente`, EventTypes.Success)
+        this.router.navigate(['objects/'])
+        this.showToast('Actualización Correcta', `Se actualizó el objeto ${this.object.value.name} correctamente`, EventTypes.Success)
+      });
+  }
+
+  loadObjectData() {
+    this.api.callApi(`api/v1/object/${this.id}`, ApiMethods.GET, true, new Map())
+      .subscribe((data: any) => {
+        this.object.setValue({
+          id: data.id,
+          name: data.name,
+          description: data.description,
+          status: data.status,
+          type: data.type,
+          features: [],
+          claimer: data.claimer
+        });
+
+        data.features.forEach(element => {
+          const features = this.fb.group({
+            name: element.name,
+            description: element.description,
+          });
+
+          this.features.push(features);
+        });
       });
   }
 
@@ -98,6 +124,7 @@ export class CreateObjectComponent implements OnInit {
       description: ['', Validators.required]
     }));
   }
+
   removeFeature(index: number) {
     this.features.removeAt(index);
     this.showToast('Eliminación Exitosa', 'La característica se eliminó exitosamente', EventTypes.Error);
@@ -123,5 +150,4 @@ export class CreateObjectComponent implements OnInit {
   get features() {
     return this.object.get('features') as FormArray;
   }
-
 }
