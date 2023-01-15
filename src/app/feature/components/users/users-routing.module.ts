@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/shared/auth.guard';
-import { CreateuserComponent } from './createuser/createuser.component';
-import { ListusersComponent } from './listusers/listusers.component';
+import { CreateuserComponent } from './components/createuser/createuser.component';
+import { ListusersComponent } from './components/listusers/listusers.component';
+import { UpdatemyuserComponent } from './components/updatemyuser/updatemyuser.component';
+import { UpdateuserComponent } from './components/updateuser/updateuser.component';
 
 const routes: Routes = [
   {
@@ -14,11 +16,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'edit/:id', component: CreateuserComponent,
+    path: 'edit/:id', component: UpdateuserComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'myuser', component: CreateuserComponent,
+    path: 'myuser', component: UpdatemyuserComponent,
     canActivate: [AuthGuard]
   }
 

@@ -139,10 +139,10 @@
                                         class="form-control" formControlName="contact"
                                         [ngClass]="{ 'is-invalid': (submitted && cla['contact'].errors)}" />
                                     <div class="text-danger" *ngIf="submitted && cla['contact'].errors?.['required']">
-                                        Nombre es requerido
+                                        Contacto es requerido
                                     </div>
                                     <div class="text-danger" *ngIf="submitted && cla['contact'].errors?.['minlength']">
-                                        Nombre debe tener al menos 3 caracteres
+                                        El contacto debe tener al menos 3 caracteres
                                     </div>
                                 </div>
 
