@@ -77,35 +77,6 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-sm-12 mb-2">
-            <div class="form-group">
-              <label class="responsive-text">Contraseña</label>
-              <input type="password" name="pass" class="form-control" formControlName="pass"
-                [ngClass]="{ 'is-invalid': (submitted && usr['pass'].errors)}" />
-              <div class="text-danger" *ngIf="submitted && usr['pass'].errors?.['required']">
-                La contraseña es obligatoria
-              </div>
-              <div class="text-danger" *ngIf="submitted && usr['pass'].errors?.['minlength']">
-                La contraseña debe contener al menos 3 letras
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-12 mb-2">
-            <div class="form-group">
-              <label class="responsive-text">Confirmar Contraseña</label>
-              <input type="password" name="confirmpass" class="form-control" formControlName="confirmPass"
-                [ngClass]="{ 'is-invalid': (submitted && usr['confirmPass'].errors)}" />
-              <div class="text-danger" *ngIf="submitted && usr['confirmPass'].errors?.['required']">
-                El confirmar contraseña es obligatorio
-              </div>
-              <div class="text-danger" *ngIf="submitted && usr['confirmPass'].errors?.['minlength']">
-                El confirmar contraseña debe contener al menos 3 letras
-              </div>
-              <div class="text-danger" *ngIf="submitted && usr['confirmPass'].errors?.['matching']">
-                Contraseñas no coinciden
-              </div>
-            </div>
-          </div>
           <div class="col-md-12">
             <div class="form-group">
               <div class="row">

@@ -26,8 +26,6 @@ export class CreateuserComponent implements OnInit {
     lastName: new FormControl(''),
     email: new FormControl(''),
     role: new FormControl(''),
-    pass: new FormControl(''),
-    confirmPass: new FormControl(''),
     status: new FormControl('')
   });
 
@@ -43,8 +41,6 @@ export class CreateuserComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.minLength(3), Validators.email]],
       role: ['', [Validators.required, Validators.minLength(3)]],
-      pass: ['', [Validators.required, Validators.minLength(3)]],
-      confirmPass: ['', [Validators.required, Validators.minLength(3)]],
       status: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
