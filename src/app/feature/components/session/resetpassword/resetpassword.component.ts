@@ -29,9 +29,9 @@ export class ResetpasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      oldPass: ['', [Validators.required]],
-      pass: ['', [Validators.required, Validators.minLength(3)]],
-      confirmpass: ['', [Validators.required, Validators.minLength(3)]],
+      oldPass: ['', []],
+      pass: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],
+      confirmpass: ['', [Validators.required, Validators.minLength(8)]],
     },
       {
         validators: [Validation.match('pass', 'confirmpass')]
@@ -41,6 +41,7 @@ export class ResetpasswordComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    console.log(this.formGroup)
     this.token == undefined ? this.updatePassword() : this.resetPasssword();
   }
 
