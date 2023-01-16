@@ -14,7 +14,7 @@
                             <div class="form-group">
                                 <label class="responsive-text">Nombre</label>
                                 <input type="text" name="name" class="form-control" formControlName="name"
-                                    [ngClass]="{ 'is-invalid': (submitted && obj['name'].errors)}" />
+                                    autocomplete="off" [ngClass]="{ 'is-invalid': (submitted && obj['name'].errors)}" />
                                 <div class="text-danger" *ngIf="submitted && obj['name'].errors?.['required']">
                                     Nombre es requerido
                                 </div>
@@ -27,6 +27,7 @@
                             <div class="form-group">
                                 <label class="responsive-text">Descripción</label>
                                 <input type="text" name="description" class="form-control" formControlName="description"
+                                    autocomplete="off"
                                     [ngClass]="{ 'is-invalid': (submitted && obj['description'].errors)}" />
 
                                 <div class="text-danger" *ngIf="submitted && obj['description'].errors?.['required']">
@@ -42,6 +43,7 @@
                             <div class="form-group">
                                 <label class="responsive-text">Estado</label>
                                 <select class="form-select" aria-label="Default select example" formControlName="status"
+                                    autocomplete="off"
                                     [ngClass]="{ 'is-invalid': (submitted && obj['status'].invalid)}">
                                     <option selected disabled>Selecciona una opción</option>
                                     <option value={{status}} *ngFor="let status of statuses">{{ status }}</option>
@@ -55,7 +57,7 @@
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="responsive-text">Tipo de objeto</label>
-                                <select class="form-select" formControlName="type"
+                                <select class="form-select" formControlName="type" autocomplete="off"
                                     [ngClass]="{ 'is-invalid': (submitted && obj['type'].invalid)}">
                                     <option selected disabled>Selecciona una opción</option>
                                     <option value={{objectType}} *ngFor="let objectType of objectTypes">{{ objectType }}
@@ -77,6 +79,7 @@
                                 <div class="form-group">
                                     <label class="responsive-text">Nombre</label>
                                     <input type="text" name="email" class="form-control" formControlName="name"
+                                        autocomplete="off"
                                         [ngClass]="{ 'is-invalid': (submitted && cla['name'].errors)}" />
 
                                     <div class="text-danger" *ngIf="submitted && cla['name'].errors?.['required']">
@@ -91,7 +94,7 @@
                                 <div class="form-group">
                                     <label class="responsive-text">Apellido</label>
                                     <input type="text" name="email" ng-model="user.username" class="form-control"
-                                        formControlName="lastName"
+                                        autocomplete="off" formControlName="lastName"
                                         [ngClass]="{ 'is-invalid': (submitted && cla['lastName'].errors)}" />
 
                                     <div class="text-danger" *ngIf="submitted && cla['lastName'].errors?.['required']">
@@ -105,7 +108,7 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="responsive-text">Tipo de Documento</label>
-                                    <select class="form-select" aria-label="Default select example"
+                                    <select class="form-select" aria-label="Default select example" autocomplete="off"
                                         formControlName="documentType"
                                         [ngClass]="{ 'is-invalid': (submitted && cla['documentType'].invalid)}">
                                         <option selected disabled>Seleccione una opción</option>
@@ -123,6 +126,7 @@
                                 <div class="form-group">
                                     <label class="responsive-text">Documento</label>
                                     <input type="text" name="email" class="form-control" formControlName="document"
+                                        autocomplete="off"
                                         [ngClass]="{ 'is-invalid': (submitted && cla['document'].errors)}" />
                                 </div>
                                 <div class="text-danger" *ngIf="submitted && cla['document'].errors?.['required']">
@@ -135,7 +139,7 @@
                             <div class="col-md-6 mb-2">
                                 <div class="form-group">
                                     <label class="responsive-text">Contacto</label>
-                                    <input type="text" name="email" ng-model="user.username" required
+                                    <input type="text" name="email" ng-model="user.username" autocomplete="off"
                                         class="form-control" formControlName="contact"
                                         [ngClass]="{ 'is-invalid': (submitted && cla['contact'].errors)}" />
                                     <div class="text-danger" *ngIf="submitted && cla['contact'].errors?.['required']">
@@ -152,7 +156,7 @@
                                 <div class="form-group">
                                     <label class="responsive-text">Tipo de persona</label>
                                     <select class="form-select" aria-label="Default select example"
-                                        formControlName="userType"
+                                        formControlName="userType" autocomplete="off"
                                         [ngClass]="{ 'is-invalid': (submitted && cla['userType'].invalid)}">
                                         <option selected disabled>Seleccione una opción</option>
                                         <option value="{{userType}}" *ngFor="let userType of userTypes">{{ userType
@@ -199,6 +203,7 @@
                                     <div class="col col-md-5">
                                         <div class="mb-3">
                                             <select id="name" formControlName="name" class="form-select"
+                                                autocomplete="off"
                                                 [ngClass]="{ 'is-invalid': (submitted && featureForms.controls['name'].invalid)}">
                                                 <option value="" selected disabled>Seleccione una opción</option>
                                                 <option value="{{featureType}}"
@@ -212,7 +217,7 @@
                                     </div>
                                     <div class="col col-md-5">
                                         <div class="mb-3">
-                                            <input id="description" type="text" class="form-control"
+                                            <input id="description" type="text" class="form-control" autocomplete="off"
                                                 formControlName="description"
                                                 [ngClass]="{ 'is-invalid': (submitted && featureForms.controls['description'].errors?.['required'])}" />
                                         </div>
