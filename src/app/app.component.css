@@ -1,3 +1,7 @@
 * {
     scrollbar-width: none;
 }
+
+.modules {
+    min-height: 78vh;
+}

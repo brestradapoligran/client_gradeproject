@@ -23,11 +23,8 @@
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
           <td class="text-center">
-            <span
-              class="ps-2 pe-2 pt-1 pb-1 status text-center"
-              [ngClass]="user.status ? 'status-active' : 'status-inactive'"
-              >{{ user.status ? "Activo" : "Inactivo" }}</span
-            >
+            <span class="ps-2 pe-2 pt-1 pb-1 status text-center"
+              [ngClass]="user.status == 'Activo' ? 'status-active' : 'status-inactive'">{{ user.status }}</span>
           </td>
           <td>
             <i class="fa-solid fa-pencil" [routerLink]="['edit', user.id]"></i>

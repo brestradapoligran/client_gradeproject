@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/app/shared/auth.guard';
 import { CreateObjectComponent } from './components/create-object/create-object.component';
 import { GetObjectComponent } from './components/get-object/get-object.component';
 import { ListComponent } from './components/list/list.component';
+import { UpdateobjectComponent } from './components/updateobject/updateobject.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'edit/:id', component: CreateObjectComponent,
+    path: 'edit/:id', component: UpdateobjectComponent,
     canActivate: [AuthGuard],
   }
 ];

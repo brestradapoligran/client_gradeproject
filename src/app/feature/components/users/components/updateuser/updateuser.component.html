@@ -1,0 +1,104 @@
+<section id="edit-user">
+    <div class="container">
+        <div>
+            <label class="title text-center">Editar Usuario</label>
+        </div>
+        <div class="form container card p-4 mb-5">
+            <div>
+                <label class="form-title text-center mb-3 responsive-text">Información del usuario</label>
+            </div>
+            <form name="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-group">
+                            <label class="responsive-text">Nombre</label>
+                            <input type="text" name="name" class="form-control" formControlName="name"
+                                autocomplete="off" [ngClass]="{ 'is-invalid': (submitted && usr['name'].errors)}" />
+                            <div class="text-danger" *ngIf="submitted && usr['name'].errors?.['required']">
+                                El nombre es obligatorio
+                            </div>
+                            <div class="text-danger" *ngIf="submitted && usr['name'].errors?.['minlength']">
+                                El nombre debe contener al menos 3 letras
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-group">
+                            <label class="responsive-text">Apellido</label>
+                            <input type="text" name="lastname" class="form-control" formControlName="lastName"
+                                autocomplete="off" [ngClass]="{ 'is-invalid': (submitted && usr['lastName'].errors)}" />
+                            <div class="text-danger" *ngIf="submitted && usr['lastName'].errors?.['required']">
+                                El apellido es obligatorio
+                            </div>
+                            <div class="text-danger" *ngIf="submitted && usr['lastName'].errors?.['minlength']">
+                                El nombre debe contener al menos 3 letras
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-group">
+                            <label class="responsive-text">Correo</label>
+                            <input type="email" name="email" class="form-control" formControlName="email"
+                                autocomplete="off" [ngClass]="{ 'is-invalid': (submitted && usr['email'].errors)}" />
+                            <div class="text-danger" *ngIf="submitted && usr['email'].errors?.['required']">
+                                El correo es obligatorio
+                            </div>
+                            <div class="text-danger" *ngIf="submitted && usr['email'].errors?.['minlength']">
+                                El correo debe contener al menos 3 letras
+                            </div>
+                            <div class="text-danger" *ngIf="submitted && usr['email'].errors?.['email']">
+                                Debe ingresar un correo válido
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-group">
+                            <label class="responsive-text">Rol</label>
+                            <select class="form-select responsive-text" formControlName="role" autocomplete="off"
+                                [ngClass]="{ 'is-invalid': (submitted && usr['role'].invalid)}">
+                                <option selected disabled>Selecciona un rol</option>
+                                <option value={{role}} *ngFor="let role of roles">{{ role }}</option>
+                            </select>
+                            <div class="text-danger" *ngIf="submitted && usr['role'].invalid && submitted">
+                                Seleccione una opción
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-group">
+                            <label class="responsive-text">Estado</label>
+                            <select class="form-select responsive-text" formControlName="status" autocomplete="off"
+                                [ngClass]="{ 'is-invalid': (submitted && usr['status'].invalid)}">
+                                <option selected disabled>Selecciona un estado</option>
+                                <option value={{status}} *ngFor="let status of userStatuses">{{ status }}</option>
+                            </select>
+                            <div class="text-danger" *ngIf="submitted && usr['status'].invalid && submitted">
+                                Seleccione una opción
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" ng-disabled="form.$invalid" autocomplete="off"
+                                        class="btn bg-blue pull-right responsive-text" [routerLink]="['/users/']">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                        Volver atrás
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" ng-disabled="form.$invalid"
+                                        class="btn bg-blue pull-right responsive-text">
+                                        Editar usuario
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
