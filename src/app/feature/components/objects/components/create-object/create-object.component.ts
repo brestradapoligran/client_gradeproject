@@ -98,6 +98,7 @@ export class CreateObjectComponent implements OnInit {
       description: ['', Validators.required]
     }));
   }
+
   removeFeature(index: number) {
     this.features.removeAt(index);
     this.showToast('Eliminación Exitosa', 'La característica se eliminó exitosamente', EventTypes.Error);
@@ -112,12 +113,33 @@ export class CreateObjectComponent implements OnInit {
     }
   }
 
+  addClaimer() {
+    if (this.obj['status'].value == 'RECLAMADO') {
+      this.cla['name'].setValidators([Validators.required, Validators.minLength(3)])
+      this.cla['lastName'].setValidators([Validators.required, Validators.minLength(3)])
+      this.cla['document'].setValidators([Validators.required, Validators.minLength(5)])
+      this.cla['documentType'].setValidators([Validators.required, Validators.minLength(2)])
+      this.cla['contact'].setValidators([Validators.required, Validators.minLength(3)])
+      this.cla['userType'].setValidators([Validators.required, Validators.minLength(3)])
+      this.cla['name'].updateValueAndValidity();
+      this.cla['lastName'].updateValueAndValidity();
+      this.cla['document'].updateValueAndValidity();
+      this.cla['documentType'].updateValueAndValidity();
+      this.cla['contact'].updateValueAndValidity();
+      this.cla['userType'].updateValueAndValidity();
+    }
+  }
+
   get obj(): { [key: string]: AbstractControl } {
     return this.object.controls;
   }
 
   get cla(): { [key: string]: AbstractControl } {
     return this.object.controls.claimer.controls;
+  }
+
+  get claimer() {
+    return this.object.get('claimer') as FormGroup;
   }
 
   get features() {
