@@ -43,8 +43,8 @@
                             <div class="form-group">
                                 <label class="responsive-text">Estado</label>
                                 <select class="form-select" aria-label="Default select example" formControlName="status"
-                                    autocomplete="off"
-                                    [ngClass]="{ 'is-invalid': (submitted && obj['status'].invalid)}">
+                                    autocomplete="off" [ngClass]="{ 'is-invalid': (submitted && obj['status'].invalid)}"
+                                    (change)="addClaimer()">
                                     <option selected disabled>Selecciona una opción</option>
                                     <option value={{status}} *ngFor="let status of statuses">{{ status }}</option>
                                 </select>
@@ -125,7 +125,7 @@
                             <div class="col-md-6 mb-2">
                                 <div class="form-group">
                                     <label class="responsive-text">Documento</label>
-                                    <input type="text" name="email" class="form-control" formControlName="document"
+                                    <input type="number" name="document" class="form-control" formControlName="document"
                                         autocomplete="off"
                                         [ngClass]="{ 'is-invalid': (submitted && cla['document'].errors)}" />
                                 </div>
