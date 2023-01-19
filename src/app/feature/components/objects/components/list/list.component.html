@@ -4,21 +4,16 @@
       <label class="title text-center responsive-text">OBJETOS</label>
     </div>
     <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg">
+      <div class="col-sm-12 col-md-12 col-lg mb-5">
         <app-filter (searchFilters)="searchFilters($event)"></app-filter>
       </div>
       <div class="col-lg-9 col-sm-12">
         <ul class="row">
           <li class="col-sm-6 col-lg-4 mb-4" *ngFor="let object of objects">
             <div class="card">
-              <img
-                src="../../../../../../assets/img/descarga.jpg"
-                [ngClass]="object.status == 'RECLAMADO' ? 'card-img-top' : ''"
-                alt="..."
-              />
-              <h1
-                [ngClass]="object.status == 'RECLAMADO' ? 'claimed' : 'hiden'"
-              >
+              <img src="../../../../../../assets/img/descarga.jpg"
+                [ngClass]="object.status == 'RECLAMADO' ? 'card-img-top' : ''" alt="..." />
+              <h1 [ngClass]="object.status == 'RECLAMADO' ? 'claimed' : 'hiden'">
                 RECLAMADO
               </h1>
               <div class="card-body" [routerLink]="['edit', object.id]">
@@ -47,25 +42,25 @@
 </section>
 
 
-  <!--form modal-->
-  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Eliminación de objeto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h3>¿Seguro quieres eliminar el objeto <strong>{{ objectModalValidation.name }}</strong>?</h3>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Cerrar
-          </button>
-          <button type="button" class="btn btn-delete" (click)="deleteObject()">
-            Eliminar
-          </button>
-        </div>
+<!--form modal-->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminación de objeto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>¿Seguro quieres eliminar el objeto <strong>{{ objectModalValidation.name }}</strong>?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-delete" (click)="deleteObject()">
+          Eliminar
+        </button>
       </div>
     </div>
   </div>
+</div>
