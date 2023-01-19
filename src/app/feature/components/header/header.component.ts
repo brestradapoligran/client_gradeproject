@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth/AuthService';
 export class HeaderComponent implements OnInit {
 
   logged: Boolean = false;
+  role: String = localStorage.getItem('role');
 
   constructor(public authService: AuthService, private router: Router) {
 

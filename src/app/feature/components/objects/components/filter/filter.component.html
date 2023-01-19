@@ -1,5 +1,5 @@
 <div class="full-width container">
-  <button class="btn bg-blue mb-3 full-width responsive-text" [routerLink]="['create']">
+  <button class="btn bg-blue mb-3 full-width responsive-text" [routerLink]="['create']" *ngIf="logged">
     Crear Objeto
   </button>
 </div>
