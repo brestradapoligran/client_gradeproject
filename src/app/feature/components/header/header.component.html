@@ -13,24 +13,22 @@
                 </li>
                 <li>
                     <a class="nav-link px-2 text-white" [routerLink]="['/users']"
-                        *ngIf="role == 'Administrador' && logged || true">Usuarios</a>
+                        *ngIf="role == 'Administrador' && logged">Usuarios</a>
                 </li>
             </ul>
-            <div class="text-end">
-                <button type="button" class="btn btn-outline-light" [routerLink]="['/session']" *ngIf="!logged">
-                    Login
-                </button>
-            </div>
         </div>
         <div class="col-3">
-            <div class="text-end height100 d-flex align-items-center justify-content-start" *ngIf="logged">
+            <div class="text-end height100 d-flex align-items-center justify-content-start">
                 <div class="flex-shrink-0 dropdown" data-bs-toggle="dropdown">
+                    <button type="button" class="btn btn-outline-light" [routerLink]="['/session']" *ngIf="!logged">
+                        Login
+                    </button>
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                        data-bs-toggle="dropdown" aria-expanded="false" *ngIf="logged">
                         <img src="/assets/img/user.png" alt="mdo" width="32" height="32"
                             class="rounded-circle user-img" />
                     </a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" *ngIf="logged">
                         <li>
                             <a class="dropdown-item" [routerLink]="['/users/myuser']">Mi Perfil</a>
                         </li>
@@ -45,11 +43,9 @@
                     </ul>
                 </div>
             </div>
+            <div class="text-end height100 d-flex align-items-center justify-content-start">
+
+            </div>
         </div>
-    </div>
-    <div class="d-flex align-items-center justify-content-around prueba">
-
-
-
     </div>
 </header>

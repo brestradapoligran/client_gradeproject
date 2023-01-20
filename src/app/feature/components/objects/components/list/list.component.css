@@ -77,3 +77,24 @@ ul {
     padding: 10px;
     margin: 0;
 }
+
+.card-icon {
+    color: #000;
+    width: 100%;
+    height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    font-size: 10rem;
+}
+
+.bg-claimed {
+    background-color: #b5b5b5;
+}
+
+.bg-lost {
+    background-color: #ffca8d;
+}

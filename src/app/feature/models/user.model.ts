@@ -4,9 +4,9 @@ export default class UserModel {
     lastName: String;
     email: String;
     role: String;
-    status: Boolean
+    status: String
 
-    constructor(id: String, name: String, lastName: String, email: String, role: String, status: Boolean) {
+    constructor(id: String, name: String, lastName: String, email: String, role: String, status: String) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;

@@ -8,11 +8,11 @@ i:hover {
 }
 
 .fa-pencil:hover {
-    background-color: #0f0;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .fa-trash-can:hover {
-    background-color: #f00;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .full-width {
@@ -52,6 +52,7 @@ tr:hover {
 .status-inactive {
     background-color: #FFC1C1;
 }
-.responsive-text{
+
+.responsive-text {
     font-size: 1rem;
 }

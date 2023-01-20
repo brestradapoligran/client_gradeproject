@@ -18,10 +18,9 @@ export class ListusersComponent implements OnInit {
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('role') != UserRoleEnum.Administrador.toString()) {
+    if (localStorage.getItem('role') != 'Administrador') {
       this.router.navigate(['objects/']);
     }
-    return;
     this.getUsers();
   }
 
@@ -34,7 +33,11 @@ export class ListusersComponent implements OnInit {
   }
 
   changeStatus(user: UserModel) {
-    user.status = !user.status;
+    if (user.status == 'Activo') {
+      user.status = 'Inactivo'
+    } else {
+      user.status = 'Activo'
+    }
     this.api.callApi(`api/v1/user/status/${user.id}`, ApiMethods.PUT, true, new Map())
       .subscribe();
   }
