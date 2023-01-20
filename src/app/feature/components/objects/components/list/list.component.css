@@ -72,3 +72,8 @@ ul {
 .btn-delete:hover {
     background-color: #bd005b;
 }
+
+.list {
+    padding: 10px;
+    margin: 0;
+}

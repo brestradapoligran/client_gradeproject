@@ -4,11 +4,11 @@
       <label class="title text-center responsive-text">OBJETOS</label>
     </div>
     <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg mb-5">
+      <div class="col-sm-12 col-md-12 col-lg mb-3">
         <app-filter (searchFilters)="searchFilters($event)"></app-filter>
       </div>
-      <div class="col-lg-9 col-sm-12">
-        <ul class="row">
+      <div class="col-lg-9 col-md-6 col-sm-12 p-0">
+        <ul class="row list">
           <li class="col-sm-6 col-lg-4 mb-4" *ngFor="let object of objects">
             <div class="card">
               <img src="../../../../../../assets/img/descarga.jpg"

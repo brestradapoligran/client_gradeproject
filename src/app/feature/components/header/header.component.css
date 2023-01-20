@@ -14,12 +14,16 @@
     height: 40px;
 }
 
-@media (max-width: 576px){
-    .prueba{
-        flex-direction: column!important;
+@media (max-width: 576px) {
+    .prueba {
+        flex-direction: column !important;
     }
 }
 
 .user-img {
     background-color: rgba(237, 237, 237, 0.74);
+}
+
+.height100 {
+    height: 100%;
 }
