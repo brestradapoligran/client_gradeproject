@@ -5,7 +5,7 @@
         <label class="title text-center responsive-text">INICIAR SESIÓN</label>
       </div>
       <form name="form" [formGroup]="form" (ngSubmit)="login()">
-        <div class="login-container">
+        <div class="login-container container">
           <div class="row">
 
             <div class="col-md-12 mb-2">
@@ -35,7 +35,7 @@
             <div class="col-md-12 mb-3">
               <a [routerLink]="['/session/forgotpassword']">¿Has olvidado contraseña?</a>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 mb-2">
               <div class="form-group text-center">
                 <button type="submit" ng-disabled="myForm.$invalid" class="btn bg-blue pull-right responsive-text">
                   Ingresar

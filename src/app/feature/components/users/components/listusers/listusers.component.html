@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users" (click)="getUser(user.id)">
+        <tr *ngFor="let user of users">
           <td>{{ user.name }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.email }}</td>
