@@ -13,25 +13,97 @@
           <th scope="col">Email</th>
           <th scope="col">Role</th>
           <th scope="col">Estado</th>
-          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let user of users">
-          <td>{{ user.name }}</td>
-          <td>{{ user.lastName }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.role }}</td>
-          <td class="text-center">
+          <td (click)="openUserModel(user)">{{ user.name }}</td>
+          <td (click)="openUserModel(user)">{{ user.lastName }}</td>
+          <td (click)="openUserModel(user)">{{ user.email }}</td>
+          <td (click)="openUserModel(user)">{{ user.role }}</td>
+          <td class="text-center" (click)="openUserModel(user)">
             <span class="ps-2 pe-2 pt-1 pb-1 status text-center"
               [ngClass]="user.status == 'Activo' ? 'status-active' : 'status-inactive'">{{ user.status }}</span>
-          </td>
-          <td>
-            <i class="fa-solid fa-pencil" [routerLink]="['edit', user.id]"></i>
-            <i class="fa-solid fa-trash-can" (click)="changeStatus(user)"></i>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </section>
+
+<!--User Modal-->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title me-2" id="exampleModalLabel">{{ selectedUser.name }} {{selectedUser.lastName}}</h5>
+        <span class="badge bg-warning text-dark">{{selectedUser.status}}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="name col-4">
+            <strong>Correo</strong>
+          </div>
+          <div class="value col-8 mb-1">
+            <label>{{ selectedUser.email }}</label>
+          </div>
+
+          <div class="name col-4">
+            <strong>Rol</strong>
+          </div>
+          <div class="value col-8 mb-1">
+            <label>{{ selectedUser.role }}</label>
+          </div>
+
+          <div class="name col-4">
+            <strong>Estado</strong>
+          </div>
+          <div class="value col-8 mb-1">
+            <label>{{ selectedUser.status }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-warning" data-bs-dismiss="modal" (click)="changeStatus(selectedUser)"
+          *ngIf="selectedUser.status != 'Activo'">
+          Activar Usuario
+        </button>
+        <button type="button" class="btn bg-warning" data-bs-dismiss="modal" (click)="changeStatus(selectedUser)"
+          *ngIf="selectedUser.status == 'Activo'">
+          Desactivar Usuario
+        </button>
+        <button type="button" class="btn btn-edit" data-bs-dismiss="modal" [routerLink]="['edit', selectedUser.id]">
+          Editar
+        </button>
+        <button type="button" class="btn btn-delete" (click)="onDelete(selectedUser)">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--form modal-->
+<div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminación de objeto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>¿Seguro quieres eliminar el objeto asd <strong>{{ selectedUser.name }}</strong>?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="openUserModel(selectedUser)">
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-delete" (click)="deleteUser(selectedUser)">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

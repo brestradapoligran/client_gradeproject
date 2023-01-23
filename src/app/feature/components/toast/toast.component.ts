@@ -36,10 +36,10 @@ export class ToastComponent implements OnInit {
       this.toastEl.nativeElement,
       this.type === EventTypes.Error
         ? {
-          delay: 10000
+          delay: 5000
         }
         : {
-          delay: 6000,
+          delay: 5000,
         }
     );
 

@@ -98,3 +98,21 @@ ul {
 .bg-lost {
     background-color: #ffca8d;
 }
+
+.modal-title {
+    display: block;
+}
+
+.modal-status {
+    display: block;
+    background-color: rgb(255, 146, 146);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
+}
+
+.tag {
+    display: inline-block;
+    border-radius: 10px;
+    border: #000;
+}

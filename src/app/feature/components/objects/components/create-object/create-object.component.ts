@@ -13,6 +13,7 @@ import { ApiService } from 'src/app/feature/services/api/api.service';
 import { ToastService } from 'src/app/feature/services/toast/toast.service';
 import { ApiMethods } from 'src/app/feature/utils/api-methods';
 
+
 @Component({
   selector: 'app-create-object',
   templateUrl: './create-object.component.html',
@@ -23,6 +24,7 @@ export class CreateObjectComponent implements OnInit {
   EventTypes = EventTypes;
   formGroup: FormGroup;
   submitted: Boolean = false;
+  model: any;
   statuses: string[] = Object.keys(ObjectStatusEnum).filter((item) => isNaN(Number(item)));
   objectTypes: string[] = Object.keys(ObjectTypeEnum).filter((item) => isNaN(Number(item)));
   featureTypes: string[] = Object.keys(ObjectFeatureTypeEnum).filter((item) => isNaN(Number(item)));
@@ -36,13 +38,15 @@ export class CreateObjectComponent implements OnInit {
     status: new FormControl(''),
     type: new FormControl(''),
     features: new FormArray([]),
+    lostDate: new FormControl(''),
     claimer: this.fb.group({
       name: new FormControl(''),
       lastName: new FormControl(''),
       document: new FormControl(''),
       documentType: new FormControl(''),
       contact: new FormControl(''),
-      userType: new FormControl('')
+      userType: new FormControl(''),
+      foundDate: new FormControl('')
     })
   });
 
@@ -65,13 +69,15 @@ export class CreateObjectComponent implements OnInit {
       status: ['', [Validators.required, Validators.minLength(3)]],
       type: ['', [Validators.required, Validators.minLength(3)]],
       features: this.fb.array([]),
+      lostDate: ['', Validators.required],
       claimer: this.fb.group({
         name: ['', []],
         lastName: ['', []],
         document: ['', []],
         documentType: ['CC', []],
         contact: ['', []],
-        userType: ['Estudiante', []]
+        userType: ['Estudiante', []],
+        foundDate: ['', []]
       })
     });
   }
@@ -121,6 +127,7 @@ export class CreateObjectComponent implements OnInit {
       this.cla['documentType'].setValidators([Validators.required, Validators.minLength(2)])
       this.cla['contact'].setValidators([Validators.required, Validators.minLength(3)])
       this.cla['userType'].setValidators([Validators.required, Validators.minLength(3)])
+      this.cla['foundDate'].setValidators([Validators.required])
       this.cla['name'].updateValueAndValidity();
       this.cla['lastName'].updateValueAndValidity();
       this.cla['document'].updateValueAndValidity();

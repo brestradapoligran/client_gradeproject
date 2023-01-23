@@ -30,6 +30,12 @@
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" *ngIf="logged">
                         <li>
+                            <a class="dropdown-item email-dropdown">{{ email }}</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li>
                             <a class="dropdown-item" [routerLink]="['/users/myuser']">Mi Perfil</a>
                         </li>
                         <li><a class="dropdown-item" [routerLink]="['/session/resetpassword']">Cambiar Contraseña</a>

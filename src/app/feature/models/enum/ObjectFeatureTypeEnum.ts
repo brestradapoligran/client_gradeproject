@@ -1,5 +1,7 @@
 export enum ObjectFeatureTypeEnum {
     Color,
     Forma,
-    Tamaño
+    Tamaño,
+    Marca,
+    Otro
 }

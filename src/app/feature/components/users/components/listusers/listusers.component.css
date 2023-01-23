@@ -56,3 +56,13 @@ tr:hover {
 .responsive-text {
     font-size: 1rem;
 }
+
+.btn-edit {
+    background-color: #1FB2DE;
+    color: #FFFFFF;
+}
+
+.btn-delete {
+    background-color: #EC0677;
+    color: #FFFFFF;
+}

@@ -64,10 +64,12 @@ export class ResetpasswordComponent implements OnInit {
     }
     this.api.callApi('api/v1/user/updatepassword', ApiMethods.POST, true, new Map<string, string>, this.formGroup.value)
       .subscribe(() => {
-        this.router.navigate(['session']);
+        this.router.navigate(['objects']);
         this.toastService.showSuccessToast('Actualización Exitosa', `Se actualizó correctamente la contraseña`)
       });
   }
+
+
 
   get f(): { [key: string]: AbstractControl } {
     return this.formGroup.controls;

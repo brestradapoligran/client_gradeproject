@@ -1,6 +1,6 @@
 <section id="create-object" class="container mb-5">
     <div>
-        <label class="title text-center">Objeto</label>
+        <label class="title text-center">Editar Objeto</label>
     </div>
     <div class="center-div">
         <div class="card p-4 mt-1 form-container">
@@ -66,6 +66,13 @@
                                 <div class="text-danger" *ngIf="submitted && obj['type'].invalid && submitted">
                                     Seleccione una opción
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label class="responsive-text">¿Cuándo se perdió?</label>
+                                <input id="lostDate" class="form-control" type="date" formControlName="lostDate" />
                             </div>
                         </div>
 
@@ -167,9 +174,15 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="responsive-text">¿Cuándo se encontró?</label>
+                                    <input id="foundDate" class="form-control" type="date"
+                                        formControlName="foundDate" />
+                                </div>
+                            </div>
                         </div>
-
-
 
                         <hr class="hr hr-blurry" />
                         <div>
