@@ -6,7 +6,7 @@ export default class UserModel {
     role: String;
     status: String
 
-    constructor(id: String, name: String, lastName: String, email: String, role: String, status: String) {
+    constructor(id?: String, name?: String, lastName?: String, email?: String, role?: String, status?: String) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
