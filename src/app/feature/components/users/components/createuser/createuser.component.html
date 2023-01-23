@@ -64,19 +64,6 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-sm-12 mb-2">
-            <div class="form-group">
-              <label class="responsive-text">Estado</label>
-              <select class="form-select responsive-text" formControlName="status" autocomplete="off"
-                [ngClass]="{ 'is-invalid': (submitted && usr['status'].invalid)}">
-                <option selected disabled>Selecciona un estado</option>
-                <option value={{status}} *ngFor="let status of userStatuses">{{ status }}</option>
-              </select>
-              <div class="text-danger" *ngIf="submitted && usr['status'].invalid && submitted">
-                Seleccione una opción
-              </div>
-            </div>
-          </div>
           <div class="col-md-12">
             <div class="form-group">
               <div class="row">

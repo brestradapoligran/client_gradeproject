@@ -68,8 +68,13 @@ export class ListusersComponent implements OnInit {
     this.validationModal.show();
   }
 
-  deleteUser(id: String) {
-
+  deleteUser(user: UserModel) {
+    this.api.callApi(`api/v1/user/delete/${user.id}`, ApiMethods.DELETE, true, new Map())
+      .subscribe(() => {
+        this.toastService.showSuccessToast('Actualización Exitosa', `El usuario ${user.name} ${user.lastName} fue eliminado correctamente`);
+        this.validationModal.hide();
+        this.getUsers();
+      });
   }
 
 }

@@ -69,6 +69,13 @@
                             </div>
                         </div>
 
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label class="responsive-text">¿Cuándo se perdió?</label>
+                                <input id="lostDate" class="form-control" type="date" formControlName="lostDate" />
+                            </div>
+                        </div>
+
                         <hr class="hr hr-blurry" *ngIf="object.value.status == 'RECLAMADO'" />
                         <div *ngIf="object.value.status == 'RECLAMADO'" class="row" formGroupName="claimer">
                             <div>
@@ -167,9 +174,15 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="responsive-text">¿Cuándo se encontró?</label>
+                                    <input id="foundDate" class="form-control" type="date"
+                                        formControlName="foundDate" />
+                                </div>
+                            </div>
                         </div>
-
-
 
                         <hr class="hr hr-blurry" />
                         <div>

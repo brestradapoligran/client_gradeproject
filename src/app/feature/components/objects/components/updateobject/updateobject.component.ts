@@ -34,6 +34,7 @@ export class UpdateobjectComponent implements OnInit {
     description: new FormControl(''),
     status: new FormControl(''),
     type: new FormControl(''),
+    lostDate: new FormControl(''),
     features: new FormArray([]),
     claimer: this.fb.group({
       name: new FormControl(''),
@@ -41,7 +42,8 @@ export class UpdateobjectComponent implements OnInit {
       document: new FormControl(''),
       documentType: new FormControl(''),
       contact: new FormControl(''),
-      userType: new FormControl('')
+      userType: new FormControl(''),
+      foundDate: new FormControl('')
     })
   });
 
@@ -65,13 +67,15 @@ export class UpdateobjectComponent implements OnInit {
       status: ['', [Validators.required, Validators.minLength(3)]],
       type: ['', [Validators.required, Validators.minLength(3)]],
       features: this.fb.array([]),
+      lostDate: ['', [Validators.required]],
       claimer: this.fb.group({
         name: ['', []],
         lastName: ['', []],
         document: ['', []],
         documentType: ['CC', []],
         contact: ['', []],
-        userType: ['Estudiante', []]
+        userType: ['Estudiante', []],
+        foundDate: ['', []]
       })
     });
     this.id = this.activatedRoute.snapshot.params["id"];
@@ -104,6 +108,7 @@ export class UpdateobjectComponent implements OnInit {
           status: data.status,
           type: data.type,
           features: [],
+          lostDate: data.lostDate,
           claimer: data.claimer
         });
 

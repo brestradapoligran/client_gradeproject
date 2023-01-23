@@ -27,3 +27,11 @@
 .height100 {
     height: 100%;
 }
+
+.email-dropdown {
+    color: #909090;
+}
+
+.email-dropdown:hover {
+    background-color: #fff;
+}

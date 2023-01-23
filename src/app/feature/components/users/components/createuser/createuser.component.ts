@@ -26,7 +26,7 @@ export class CreateuserComponent implements OnInit {
     lastName: new FormControl(''),
     email: new FormControl(''),
     role: new FormControl(''),
-    status: new FormControl('')
+    status: new FormControl('Activo')
   });
 
   constructor(private api: ApiService,
@@ -41,7 +41,7 @@ export class CreateuserComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.minLength(3), Validators.email]],
       role: ['', [Validators.required, Validators.minLength(3)]],
-      status: ['', [Validators.required, Validators.minLength(3)]]
+      status: ['Activo', [Validators.required, Validators.minLength(3)]]
     });
   }
 

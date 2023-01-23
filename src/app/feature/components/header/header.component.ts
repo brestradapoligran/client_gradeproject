@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
 
   logged: Boolean = false;
   role: String = localStorage.getItem('role');
+  email: String = localStorage.getItem('email');
 
   constructor(public authService: AuthService, private router: Router) {
 
