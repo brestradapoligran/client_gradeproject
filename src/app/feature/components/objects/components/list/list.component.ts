@@ -52,7 +52,7 @@ export class ListComponent implements OnInit {
 
   async searchFilters(filters: any) {
     this.filters = filters;
-    await this.api.callApi('api/v1/object/search', ApiMethods.POST, true, new Map(), filters)
+    await this.api.callApi('api/v1/object/search', ApiMethods.POST, false, new Map(), filters)
       .subscribe((data: any) => this.objects = data);
   }
 
@@ -73,6 +73,7 @@ export class ListComponent implements OnInit {
   validationOption(object: ObjectModel) {
     this.objectModalValidation = object;
     this.formModal.show();
+    this.objectModal.hide();
   }
 
   onDeleteModal(id: string) {
@@ -96,5 +97,10 @@ export class ListComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  onValidationClose() {
+    this.formModal.hide();
+    this.objectModal.show();
   }
 }
