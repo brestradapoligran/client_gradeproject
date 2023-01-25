@@ -10,11 +10,10 @@ import { AuthService } from '../../services/auth/AuthService';
 export class HeaderComponent implements OnInit {
 
   logged: Boolean = false;
-  role: String = localStorage.getItem('role');
-  email: String = localStorage.getItem('email');
+  role: String = '';
+  email: String = '';
 
   constructor(public authService: AuthService, private router: Router) {
-
     this.logged = this.authService.isLoggedIn();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -24,6 +23,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem('role');
+    this.email = localStorage.getItem('email');
   }
 
   onLogout() {
