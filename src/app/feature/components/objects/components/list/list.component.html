@@ -9,21 +9,61 @@
       </div>
       <div class="col-lg-9 col-md-12 col-sm-12 p-0">
         <ul class="row list">
-          <li class="col-sm-6 col-lg-4 col-md-4 mb-4" *ngFor="let object of objects">
+          <li
+            class="col-sm-6 col-lg-4 col-md-4 mb-4"
+            *ngFor="let object of objects"
+          >
             <div class="card">
-              <div class="card-icon" [ngClass]="object.status == 'RECLAMADO' ? 'card-img-top bg-claimed' : 'bg-lost'"
-                (click)="openObjectModal(object)">
-                <i class="fa-solid fa-credit-card icon" *ngIf="object.type == 'Civica'"></i>
-                <i class="fa-solid fa-mobile-screen-button icon" *ngIf="object.type == 'Celular'"></i>
-                <i class="fa-solid fa-suitcase icon" *ngIf="object.type == 'Morral'"></i>
-                <i class="fa-solid fa-laptop icon" *ngIf="object.type == 'Computador'"></i>
-                <i class="fa-solid fa-id-card icon" *ngIf="object.type == 'Carnet'"></i>
-                <i class="fa-solid fa-book icon" *ngIf="object.type == 'Cuaderno'"></i>
-                <i class="fa-solid fa-key icon" *ngIf="object.type == 'Llaves'"></i>
-                <i class="fa-solid fa-shirt icon" *ngIf="object.type == 'Ropa'"></i>
-                <i class="fa-regular fa-circle-question icon" *ngIf="object.type == 'Otros'"></i>
+              <div
+                class="card-icon"
+                [ngClass]="
+                  object.status == 'RECLAMADO'
+                    ? 'card-img-top bg-claimed'
+                    : 'bg-lost'
+                "
+                (click)="openObjectModal(object)"
+              >
+                <i
+                  class="fa-solid fa-credit-card icon"
+                  *ngIf="object.type == 'Civica'"
+                ></i>
+                <i
+                  class="fa-solid fa-mobile-screen-button icon"
+                  *ngIf="object.type == 'Celular'"
+                ></i>
+                <i
+                  class="fa-solid fa-suitcase icon"
+                  *ngIf="object.type == 'Morral'"
+                ></i>
+                <i
+                  class="fa-solid fa-laptop icon"
+                  *ngIf="object.type == 'Computador'"
+                ></i>
+                <i
+                  class="fa-solid fa-id-card icon"
+                  *ngIf="object.type == 'Carnet'"
+                ></i>
+                <i
+                  class="fa-solid fa-book icon"
+                  *ngIf="object.type == 'Cuaderno'"
+                ></i>
+                <i
+                  class="fa-solid fa-key icon"
+                  *ngIf="object.type == 'Llaves'"
+                ></i>
+                <i
+                  class="fa-solid fa-shirt icon"
+                  *ngIf="object.type == 'Ropa'"
+                ></i>
+                <i
+                  class="fa-regular fa-circle-question icon"
+                  *ngIf="object.type == 'Otros'"
+                ></i>
               </div>
-              <h1 [ngClass]="object.status == 'RECLAMADO' ? 'claimed' : 'hiden'" (click)="openObjectModal(object)">
+              <h1
+                [ngClass]="object.status == 'RECLAMADO' ? 'claimed' : 'hiden'"
+                (click)="openObjectModal(object)"
+              >
                 RECLAMADO
               </h1>
               <div class="card-body" (click)="openObjectModal(object)">
@@ -32,13 +72,20 @@
               </div>
               <div class="buttons row mb-2">
                 <div class="col-6 p-2 center">
-                  <button class="btn btn-edit btn-size responsive-text" [routerLink]="['edit', object.id]"
-                    *ngIf="logged">
+                  <button
+                    class="btn btn-edit btn-size responsive-text"
+                    [routerLink]="['edit', object.id]"
+                    *ngIf="logged"
+                  >
                     Editar
                   </button>
                 </div>
                 <div class="col-6 p-2 center">
-                  <button class="btn btn-delete btn-size responsive-text" (click)="onDelete(object)" *ngIf="logged">
+                  <button
+                    class="btn btn-delete btn-size responsive-text"
+                    (click)="onDelete(object)"
+                    *ngIf="logged"
+                  >
                     Eliminar
                   </button>
                 </div>
@@ -51,23 +98,47 @@
   </div>
 </section>
 
-
 <!--form modal-->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Eliminación de Objeto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">
+          Eliminación de Objeto
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <h3>¿Seguro quieres eliminar el objeto <strong>{{ objectSelected.name }}</strong>?</h3>
+        <h3>
+          ¿Seguro quieres eliminar el objeto
+          <strong>{{ objectSelected.name }}</strong
+          >?
+        </h3>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="onValidationClose()">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="onValidationClose()"
+        >
           Cerrar
         </button>
-        <button type="button" class="btn btn-delete" (click)="deleteObject(objectSelected.id)">
+        <button
+          type="button"
+          class="btn btn-delete"
+          (click)="deleteObject(objectSelected.id)"
+        >
           Eliminar
         </button>
       </div>
@@ -75,19 +146,32 @@
   </div>
 </div>
 
-
 <!--Object Modal-->
-<div class="modal fade" id="objectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="objectModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title me-2" id="exampleModalLabel">{{ objectSelected.name }} </h5>
-        <span class="badge bg-warning text-dark" id="exampleModalLabel">{{ objectSelected.status }} </span>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title me-2" id="exampleModalLabel">
+          {{ objectSelected.name }}
+        </h5>
+        <span class="badge bg-warning text-dark" id="exampleModalLabel"
+          >{{ objectSelected.status }}
+        </span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <div class="row">
-
           <div class="name col-4">
             <strong>Descripción</strong>
           </div>
@@ -103,14 +187,20 @@
           </div>
 
           <hr class="hr hr-blurry m-2" *ngIf="isReclamadoSelected()" />
-          <label class="title text-center responsive-text" *ngIf="isReclamadoSelected()">Persona que reclama el
-            objeto</label>
+          <label
+            class="title text-center responsive-text"
+            *ngIf="isReclamadoSelected()"
+            >Persona que reclama el objeto</label
+          >
           <div class="row col-12" *ngIf="isReclamadoSelected()">
             <div class="name col-4">
               <strong>Reclamado Por</strong>
             </div>
             <div class="value col-8 mb-1">
-              <label>{{ objectSelected.claimer.name }} {{ objectSelected.claimer.lastName }}</label>
+              <label
+                >{{ objectSelected.claimer.name }}
+                {{ objectSelected.claimer.lastName }}</label
+              >
             </div>
 
             <div class="name col-4">
@@ -121,14 +211,22 @@
             </div>
           </div>
           <div>
-            <label class="badge bg-secondary me-1 mt-3" *ngFor="let feature of objectSelected.features">
+            <label
+              class="badge bg-secondary me-1 mt-3"
+              *ngFor="let feature of objectSelected.features"
+            >
               {{ feature.description }}
             </label>
           </div>
         </div>
       </div>
       <div class="modal-footer" *ngIf="logged">
-        <button type="button" class="btn btn-edit" data-bs-dismiss="modal" [routerLink]="['edit', objectSelected.id]">
+        <button
+          type="button"
+          class="btn btn-edit"
+          data-bs-dismiss="modal"
+          [routerLink]="['edit', objectSelected.id]"
+        >
           Editar
         </button>
         <button type="button" class="btn btn-delete" (click)="onDelete(object)">

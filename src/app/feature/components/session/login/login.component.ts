@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['objects'])
       }, () => {
         this.logged = false;
+        console.log(this.logged);
       }
       );
   }

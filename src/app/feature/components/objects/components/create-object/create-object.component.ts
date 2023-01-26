@@ -120,6 +120,7 @@ export class CreateObjectComponent implements OnInit {
   }
 
   addClaimer() {
+    console.log(this.obj['status'].value)
     if (this.obj['status'].value == 'RECLAMADO') {
       this.cla['name'].setValidators([Validators.required, Validators.minLength(3)])
       this.cla['lastName'].setValidators([Validators.required, Validators.minLength(3)])
@@ -134,7 +135,26 @@ export class CreateObjectComponent implements OnInit {
       this.cla['documentType'].updateValueAndValidity();
       this.cla['contact'].updateValueAndValidity();
       this.cla['userType'].updateValueAndValidity();
+      this.cla['foundDate'].updateValueAndValidity();
     }
+    else {
+      this.cla['name'].clearValidators()
+      this.cla['lastName'].clearValidators()
+      this.cla['document'].clearValidators()
+      this.cla['documentType'].clearValidators()
+      this.cla['contact'].clearValidators()
+      this.cla['userType'].clearValidators()
+      this.cla['foundDate'].clearValidators()
+      this.cla['name'].updateValueAndValidity();
+      this.cla['lastName'].updateValueAndValidity();
+      this.cla['document'].updateValueAndValidity();
+      this.cla['documentType'].updateValueAndValidity();
+      this.cla['contact'].updateValueAndValidity();
+      this.cla['userType'].updateValueAndValidity();
+      this.cla['foundDate'].updateValueAndValidity();
+    }
+    console.log(this.object)
+    console.log(this.object.invalid)
   }
 
   get obj(): { [key: string]: AbstractControl } {

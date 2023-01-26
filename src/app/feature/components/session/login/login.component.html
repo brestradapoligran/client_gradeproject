@@ -7,37 +7,51 @@
       <form name="form" [formGroup]="form" (ngSubmit)="login()">
         <div class="login-container container">
           <div class="row">
-
             <div class="col-md-12 mb-2">
               <div class="form-group">
                 <label class="responsive-text">Email</label>
-                <input type="email" name="email" class="form-control responsive-text" formControlName="email"
-                  [ngClass]="{ 'is-invalid': (submitted && f['email'].errors)}" />
-                <div class="invalid-feedback" *ngIf="(f['email'].errors)">
-                  Correo inválido
-                </div>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control responsive-text"
+                  formControlName="email"
+                />
               </div>
             </div>
-
 
             <div class="col-md-12 mb-1">
               <div class="form-group">
                 <label class="responsive-text">Password</label>
-                <input type="password" name="pass" class="form-control" formControlName="pass"
-                  [ngClass]="{ 'is-invalid': (submitted && f['pass'].errors)}" />
-                <div class="invalid-feedback" *ngIf="f['pass'].errors">
-                  Contraseña inválida
+                <input
+                  type="password"
+                  name="pass"
+                  class="form-control"
+                  formControlName="pass"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    (!logged || f['pass'].errors || f['email'].errors) &&
+                    submitted
+                  "
+                >
+                  Usuario y/o contraseña incorrecta
                 </div>
               </div>
             </div>
 
-
             <div class="col-md-12 mb-3">
-              <a [routerLink]="['/session/forgotpassword']">¿Has olvidado contraseña?</a>
+              <a [routerLink]="['/session/forgotpassword']"
+                >¿Has olvidado contraseña?</a
+              >
             </div>
             <div class="col-md-12 mb-2">
               <div class="form-group text-center">
-                <button type="submit" ng-disabled="myForm.$invalid" class="btn bg-blue pull-right responsive-text">
+                <button
+                  type="submit"
+                  ng-disabled="myForm.$invalid"
+                  class="btn bg-blue pull-right responsive-text"
+                >
                   Ingresar
                   <i class="fa-solid fa-arrow-right"></i>
                 </button>

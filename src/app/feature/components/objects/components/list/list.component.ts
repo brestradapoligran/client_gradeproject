@@ -103,4 +103,7 @@ export class ListComponent implements OnInit {
     this.formModal.hide();
     this.objectModal.show();
   }
+  getRole() {
+    return localStorage.getItem('role');
+  }
 }
